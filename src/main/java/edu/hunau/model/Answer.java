@@ -9,7 +9,7 @@ private String content;
 private int user_id;
 private int likes;
 private LocalDateTime update_time;
-private int questionId;
+private int question_id;
 
     public Answer(int id, LocalDateTime creat_time, String content, int user_id, int likes, LocalDateTime update_time, int questionId) {
         this.id = id;
@@ -18,15 +18,15 @@ private int questionId;
         this.user_id = user_id;
         this.likes = likes;
         this.update_time = update_time;
-        this.questionId = questionId;
+        this.question_id = questionId;
     }
 
     public int getQuestionId() {
-        return questionId;
+        return question_id;
     }
 
     public void setQuestionId(int questionId) {
-        this.questionId = questionId;
+        this.question_id = questionId;
     }
 
     public int getId() {
