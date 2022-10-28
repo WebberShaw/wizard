@@ -9,6 +9,25 @@ private String content;
 private int user_id;
 private int likes;
 private LocalDateTime update_time;
+private int questionId;
+
+    public Answer(int id, LocalDateTime creat_time, String content, int user_id, int likes, LocalDateTime update_time, int questionId) {
+        this.id = id;
+        this.creat_time = creat_time;
+        this.content = content;
+        this.user_id = user_id;
+        this.likes = likes;
+        this.update_time = update_time;
+        this.questionId = questionId;
+    }
+
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
 
     public int getId() {
         return id;
@@ -57,16 +76,6 @@ private LocalDateTime update_time;
     public void setUpdate_time(LocalDateTime update_time) {
         this.update_time = update_time;
     }
-
-    public Answer(int id, LocalDateTime creat_time, String content, int user_id, int likes, LocalDateTime update_time) {
-        this.id = id;
-        this.creat_time = creat_time;
-        this.content = content;
-        this.user_id = user_id;
-        this.likes = likes;
-        this.update_time = update_time;
-    }
-
     public Answer() {
     }
 }

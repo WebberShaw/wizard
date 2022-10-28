@@ -3,10 +3,12 @@ package edu.hunau.dao;
 import edu.hunau.model.Answer;
 import edu.hunau.model.Question;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface AnswerDao {
     /**
      * 添加一个答案
