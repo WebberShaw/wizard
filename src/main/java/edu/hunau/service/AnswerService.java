@@ -13,7 +13,7 @@ public interface AnswerService {
     void addAnswer(Answer answer);
 
     /**
-     * 获取所有的答案
+     * 根据question_id获取所有的答案
      * @param questionId
      * @return List Answer
      */
