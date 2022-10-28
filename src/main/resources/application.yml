@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://ddns.webbershaw.fun:3306/wizard
+    username: root
+    password: Yy336699
+    type: com.alibaba.druid.pool.DruidDataSource
+    dbcp2:
+      pool-prepared-statements: true
+

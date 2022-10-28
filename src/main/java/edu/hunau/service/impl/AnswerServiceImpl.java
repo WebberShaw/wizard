@@ -5,7 +5,7 @@ import edu.hunau.service.AnswerService;
 
 import java.util.List;
 
-public class AnswerSeviceImpl implements AnswerService {
+public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public void addAnswer(Answer answer) {
@@ -33,7 +33,12 @@ public class AnswerSeviceImpl implements AnswerService {
     }
 
     @Override
-    public List<Answer> getAnswerByIndexs(Integer begin, Integer end) {
+    public List<Answer> getAnswerByIndex(Integer begin, Integer end) {
+        return null;
+    }
+
+    @Override
+    public Integer getTotalAnswerNum(Integer questionId) {
         return null;
     }
 }

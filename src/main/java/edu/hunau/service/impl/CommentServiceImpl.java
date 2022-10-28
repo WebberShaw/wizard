@@ -36,4 +36,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getCommentsByAnswer(Integer answerId) {
         return null;
     }
+
+    @Override
+    public Integer getLikesNum(Integer answerId) {
+        return null;
+    }
 }

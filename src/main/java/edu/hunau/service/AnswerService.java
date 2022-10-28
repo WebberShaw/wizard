@@ -43,7 +43,14 @@ public interface AnswerService {
      * @param end
      * @return
      */
-    List<Answer> getAnswerByIndexs(Integer begin,Integer end);
+    List<Answer> getAnswerByIndex(Integer begin,Integer end);
+
+    /**
+     * 通过question_id获得该问题回答的总数
+     * @param questionId
+     * @return
+     */
+    Integer getTotalAnswerNum(Integer questionId);
 
 
 }

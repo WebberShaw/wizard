@@ -44,4 +44,11 @@ public interface CommentService {
      * @return
      */
     List<Comment> getCommentsByAnswer(Integer answerId);
+
+    /**
+     * 根据answer_id获取该评论的点赞总数
+     * @param answerId
+     * @return
+     */
+    Integer getLikesNum(Integer answerId);
 }

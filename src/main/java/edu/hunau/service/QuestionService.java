@@ -45,6 +45,8 @@ public interface QuestionService {
      */
     List<Question> getQuestionByIndex(Integer begin,Integer end);
 
+
+
     //后续实现--------------
 
     /**
