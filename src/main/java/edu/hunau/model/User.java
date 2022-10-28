@@ -9,8 +9,8 @@ public class User {
     private String tel;
     private String password;
     private  String email;
-    private LocalDateTime creat_time;
-    private LocalDateTime update_time;
+    private LocalDateTime creatTime;
+    private LocalDateTime updateTime;
 
     public int getId() {
         return id;
@@ -60,22 +60,47 @@ public class User {
         this.email = email;
     }
 
-    public LocalDateTime getCreat_time() {
-        return creat_time;
+    public LocalDateTime getCreatTime() {
+        return creatTime;
     }
 
-    public void setCreat_time(LocalDateTime creat_time) {
-        this.creat_time = creat_time;
+    public void setCreatTime(LocalDateTime creatTime) {
+        this.creatTime = creatTime;
     }
 
-    public LocalDateTime getUpdate_time() {
-        return update_time;
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdate_time(LocalDateTime update_time) {
-        this.update_time = update_time;
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 
     public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", school='" + school + '\'' +
+                ", tel='" + tel + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", creatTime=" + creatTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
+
+    public User(int id, String username, String school, String tel, String password, String email, LocalDateTime creatTime, LocalDateTime updateTime) {
+        this.id = id;
+        this.username = username;
+        this.school = school;
+        this.tel = tel;
+        this.password = password;
+        this.email = email;
+        this.creatTime = creatTime;
+        this.updateTime = updateTime;
     }
 }

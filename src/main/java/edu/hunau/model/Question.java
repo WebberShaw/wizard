@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 
 public class Question {
     private int  id;
-    private int user_id;
+    private int userId;
     private String title;
     private String content;
-    private LocalDateTime  creat_time;
-    private  int read_num;
-    private int answer_num;
+    private LocalDateTime  creatTime;
+    private  int readNum;
+    private int answerNum;
 
     public int getId() {
         return id;
@@ -19,12 +19,12 @@ public class Question {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -43,38 +43,51 @@ public class Question {
         this.content = content;
     }
 
-    public LocalDateTime getCreat_time() {
-        return creat_time;
+    public LocalDateTime getCreatTime() {
+        return creatTime;
     }
 
-    public void setCreat_time(LocalDateTime creat_time) {
-        this.creat_time = creat_time;
+    public void setCreatTime(LocalDateTime creatTime) {
+        this.creatTime = creatTime;
     }
 
-    public int getRead_num() {
-        return read_num;
+    public int getReadNum() {
+        return readNum;
     }
 
-    public void setRead_num(int read_num) {
-        this.read_num = read_num;
+    public void setReadNum(int readNum) {
+        this.readNum = readNum;
     }
 
-    public int getAnswer_num() {
-        return answer_num;
+    public int getAnswerNum() {
+        return answerNum;
     }
 
-    public void setAnswer_num(int answer_num) {
-        this.answer_num = answer_num;
+    public void setAnswerNum(int answerNum) {
+        this.answerNum = answerNum;
     }
 
-    public Question(int id, int user_id, String title, String content, LocalDateTime creat_time, int read_num, int answer_num) {
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", creatTime=" + creatTime +
+                ", readNum=" + readNum +
+                ", answerNum=" + answerNum +
+                '}';
+    }
+
+    public Question(int id, int userId, String title, String content, LocalDateTime creatTime, int readNum, int answerNum) {
         this.id = id;
-        this.user_id = user_id;
+        this.userId = userId;
         this.title = title;
         this.content = content;
-        this.creat_time = creat_time;
-        this.read_num = read_num;
-        this.answer_num = answer_num;
+        this.creatTime = creatTime;
+        this.readNum = readNum;
+        this.answerNum = answerNum;
     }
 
     public Question() {

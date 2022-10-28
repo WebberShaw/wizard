@@ -4,7 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.hunau.dao.UserDao">
 
+    <insert id="addUser">
+        INSERT INTO user(username,password,tel)VALUES(#{username},#{password},#{tel});
+    </insert>
+<update id="update">
+    UPDATE
+        user
+    SET
+        username = #{username},
+        school = #{school},
+        company = #{company},
+        tel = #{tel},
+        password = #{password},
+        email = #{email}
 
+    WHERE id = id;
 
+</update>
+    <delete id="deleteById">
+        DELETE FROM user WHERE id = #{id};
+    </delete>
 
 </mapper>

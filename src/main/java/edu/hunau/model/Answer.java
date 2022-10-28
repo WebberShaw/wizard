@@ -4,29 +4,37 @@ import java.time.LocalDateTime;
 
 public class Answer {
 private int id;
-private LocalDateTime creat_time;
+private LocalDateTime creatTime;
 private String content;
-private int user_id;
+private int userId;
 private int likes;
-private LocalDateTime update_time;
-private int question_id;
+private LocalDateTime updateTime;
+private int questionId;
 
-    public Answer(int id, LocalDateTime creat_time, String content, int user_id, int likes, LocalDateTime update_time, int questionId) {
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", creatTime=" + creatTime +
+                ", content='" + content + '\'' +
+                ", userId=" + userId +
+                ", likes=" + likes +
+                ", updateTime=" + updateTime +
+                ", questionId=" + questionId +
+                '}';
+    }
+
+    public Answer() {
+    }
+
+    public Answer(int id, LocalDateTime creatTime, String content, int userId, int likes, LocalDateTime updateTime, int questionId) {
         this.id = id;
-        this.creat_time = creat_time;
+        this.creatTime = creatTime;
         this.content = content;
-        this.user_id = user_id;
+        this.userId = userId;
         this.likes = likes;
-        this.update_time = update_time;
-        this.question_id = questionId;
-    }
-
-    public int getQuestionId() {
-        return question_id;
-    }
-
-    public void setQuestionId(int questionId) {
-        this.question_id = questionId;
+        this.updateTime = updateTime;
+        this.questionId = questionId;
     }
 
     public int getId() {
@@ -37,12 +45,12 @@ private int question_id;
         this.id = id;
     }
 
-    public LocalDateTime getCreat_time() {
-        return creat_time;
+    public LocalDateTime getCreatTime() {
+        return creatTime;
     }
 
-    public void setCreat_time(LocalDateTime creat_time) {
-        this.creat_time = creat_time;
+    public void setCreatTime(LocalDateTime creatTime) {
+        this.creatTime = creatTime;
     }
 
     public String getContent() {
@@ -53,12 +61,12 @@ private int question_id;
         this.content = content;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getLikes() {
@@ -69,13 +77,19 @@ private int question_id;
         this.likes = likes;
     }
 
-    public LocalDateTime getUpdate_time() {
-        return update_time;
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdate_time(LocalDateTime update_time) {
-        this.update_time = update_time;
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
-    public Answer() {
+
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
     }
 }

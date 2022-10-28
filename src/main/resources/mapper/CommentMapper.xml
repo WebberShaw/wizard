@@ -3,7 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.hunau.dao.CommentDao">
-
+    <insert id="addComment">
+        INSERT INTO comment ( content,author_id,answer_id)VALUES(#{content},#{userId},#{answerId});
+    </insert>
+    <select id="getAllComment" resultType="edu.hunau.model.Comment">
+        SELECT * FROM comment where answer_id =#{answerId} ORDER BY likes desc ;
+    </select>
+    <delete id="deleteByAnswerId">
+        DELETE FROM comment WHERE answer_id = #{answerId};
+    </delete>
+    <update id="addLikesByAnswerId">
+        UPDATE comment SET likes = likes+1 WHERE  answer_id= #{answer_id};
+    </update>
+    <update id="cancelLikesByAnswerId">
+        UPDATE comment SET likes = likes-1 WHERE  answer_id= #{answer_id};
+    </update>
 
 
 

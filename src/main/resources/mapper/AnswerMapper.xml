@@ -4,6 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.hunau.dao.AnswerDao">
 <insert id="addAnswer">
-    insert into answer(content,user_id,question_id)values (#{content},#{user_id},#{question_id});
+    insert into answer(content,author_id,problem_id)values (#{content},#{authorId},#{problemId});
 </insert>
+<select id="getAllAnswers" resultType="edu.hunau.model.Answer">
+    SELECT creat_time , content,user_id,likes,update_time FROM answer ORDER BY likes desc ;
+</select>
+<delete id="deleteById">
+    DELETE FROM answer WHERE question_id = #{id};
+</delete>
+ <update id="addLikesById">
+UPDATE answer SET likes = likes+1 WHERE  id= #{id};
+ </update>
+<update id="cancelAddLikes">
+UPDATE answer SET likes = likes-1 WHERE  id= #{id};
+</update>
 </mapper>

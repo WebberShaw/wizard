@@ -3,6 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.hunau.dao.QuestionDao">
+    <insert id="addQuestion">
+        INSERT INTO question ( user_id,title,content)VALUES(#{userId},#{title},#{content});
+    </insert>
+    <select id="getAllQuestion" resultType="edu.hunau.model.Question">
+        SELECT creat_time ,title, content,user_id,read_num,answer_num FROM question ORDER BY read_num desc  ;
+    </select>
+    <select id="getQuestionById" resultType="edu.hunau.model.Question">
+        SELECT creat_time ,title, content,user_id,read_num,answer_num FROM question where id =#{id}  ;
+    </select>
+    <delete id="deleteById">
+        DELETE FROM question WHERE id = #{id};
+    </delete>
+    <update id="addReadNum">
+        UPDATE question SET read_num = read_num+1 WHERE  id= #{id};
+    </update>
+    <update id="addAnswerNum">
+        UPDATE question SET answer_num = answer_num+1 WHERE   id= #{id};
+    </update>
+
 
 
 

@@ -3,12 +3,37 @@ package edu.hunau.model;
 import java.time.LocalDateTime;
 
 public class Comment {
-    private  int id ;
+    private  Integer id ;
     private String content;
-    private LocalDateTime creat_time;
-    private int prise_num;
-    private int author_id;
-    private  int problem_id;
+    private LocalDateTime creatTime;
+    private Integer likes;
+    private int userId;
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", creatTime=" + creatTime +
+                ", likes=" + likes +
+                ", userId=" + userId +
+                ", answerId=" + answerId +
+                '}';
+    }
+
+    private  int answerId;
+
+    public Comment(int id, String content, LocalDateTime creatTime, int likes, int userId, int answerId) {
+        this.id = id;
+        this.content = content;
+        this.creatTime = creatTime;
+        this.likes = likes;
+        this.userId = userId;
+        this.answerId = answerId;
+    }
+
+    public Comment() {
+    }
 
     public int getId() {
         return id;
@@ -26,47 +51,35 @@ public class Comment {
         this.content = content;
     }
 
-    public LocalDateTime getCreat_time() {
-        return creat_time;
+    public LocalDateTime getCreatTime() {
+        return creatTime;
     }
 
-    public void setCreat_time(LocalDateTime creat_time) {
-        this.creat_time = creat_time;
+    public void setCreatTime(LocalDateTime creatTime) {
+        this.creatTime = creatTime;
     }
 
-    public int getPrise_num() {
-        return prise_num;
+    public int getLikes() {
+        return likes;
     }
 
-    public void setPrise_num(int prise_num) {
-        this.prise_num = prise_num;
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
-    public int getAuthor_id() {
-        return author_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setAuthor_id(int author_id) {
-        this.author_id = author_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getProblem_id() {
-        return problem_id;
+    public int getAnswerId() {
+        return answerId;
     }
 
-    public void setProblem_id(int problem_id) {
-        this.problem_id = problem_id;
-    }
-
-    public Comment(int id, String content, LocalDateTime creat_time, int prise_num, int author_id, int problem_id) {
-        this.id = id;
-        this.content = content;
-        this.creat_time = creat_time;
-        this.prise_num = prise_num;
-        this.author_id = author_id;
-        this.problem_id = problem_id;
-    }
-
-    public Comment() {
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
     }
 }

@@ -44,7 +44,7 @@ public interface CommentDao {
      * @param answerId
      * @return
      */
-    List<Comment> getCommentsByAnswer(Integer answerId);
+    List<Comment> getAllComment(Integer answerId);
 
     /**
      * 根据answer_id获取该评论的点赞总数
