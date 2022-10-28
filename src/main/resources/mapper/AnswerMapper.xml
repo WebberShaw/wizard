@@ -6,6 +6,4 @@
 <insert id="addAnswer">
     insert into answer(content,user_id,question_id)values (#{content},#{user_id},#{question_id});
 </insert>
-
-
 </mapper>
