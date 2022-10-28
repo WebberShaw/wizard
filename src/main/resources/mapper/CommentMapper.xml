@@ -9,14 +9,14 @@
     <select id="getAllComment" resultType="edu.hunau.model.Comment">
         SELECT * FROM comment where answer_id =#{answerId} ORDER BY likes desc ;
     </select>
-    <delete id="deleteByAnswerId">
-        DELETE FROM comment WHERE answer_id = #{answerId};
+    <delete id="deleteById">
+        DELETE FROM comment WHERE id = #{id};
     </delete>
-    <update id="addLikesByAnswerId">
-        UPDATE comment SET likes = likes+1 WHERE  answer_id= #{answer_id};
+    <update id="addLikesById">
+        UPDATE comment SET likes = likes+1 WHERE  id= #{id};
     </update>
-    <update id="cancelLikesByAnswerId">
-        UPDATE comment SET likes = likes-1 WHERE  answer_id= #{answer_id};
+    <update id="cancelLikesById">
+        UPDATE comment SET likes = likes-1 WHERE  id= #{id};
     </update>
 
 

@@ -48,11 +48,13 @@ class WizardApplicationTests {
 //            comment.setUserId(1);
 //            comment.setAnswerId(3);
 //            commentDao.addComment(comment);
-//        List<Comment> allComment = commentDao.getAllComment(2);
-//        for (Comment commit:allComment
-//             ) {
-//            System.out.println(commit);
-//        }
-//    }
+        List<Comment> allComment = commentDao.getAllComment(2);
+        for (Comment commit:allComment
+             ) {
+            System.out.println(commit);
+        }
+
+
+
     }
 }

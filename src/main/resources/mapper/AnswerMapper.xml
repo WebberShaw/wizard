@@ -7,7 +7,7 @@
     insert into answer(content,author_id,problem_id)values (#{content},#{authorId},#{problemId});
 </insert>
 <select id="getAllAnswers" resultType="edu.hunau.model.Answer">
-    SELECT creat_time , content,user_id,likes,update_time FROM answer ORDER BY likes desc ;
+    SELECT * FROM answer where question_id=#{questionId} ORDER BY likes desc ;
 </select>
 <delete id="deleteById">
     DELETE FROM answer WHERE question_id = #{id};

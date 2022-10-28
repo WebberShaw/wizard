@@ -18,7 +18,7 @@ public interface CommentDao {
      * (comment_like++)
      * @param commentId
      */
-    void addCommentLike(Integer commentId);
+    void addLikesById(Integer commentId);
 
     /**
      * 取消给这个评论点赞
@@ -30,7 +30,7 @@ public interface CommentDao {
      * 删除一条评论
      * @param commentId
      */
-    void deleteComment(Integer commentId);
+    void deleteById(Integer commentId);
 
     /**
      * 获取单条评论
