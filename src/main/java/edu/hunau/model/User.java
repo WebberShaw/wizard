@@ -9,6 +9,16 @@ public class User {
     private String tel;
     private String password;
     private  String email;
+    private String company;
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     private LocalDateTime creatTime;
     private LocalDateTime updateTime;
 

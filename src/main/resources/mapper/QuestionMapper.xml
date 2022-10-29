@@ -6,19 +6,19 @@
     <insert id="addQuestion">
         INSERT INTO question ( user_id,title,content)VALUES(#{userId},#{title},#{content});
     </insert>
-    <select id="getAllQuestion" resultType="edu.hunau.model.Question">
-        SELECT creat_time ,title, content,user_id,read_num,answer_num FROM question ORDER BY read_num desc  ;
+    <select id="getAllQuestions" resultType="edu.hunau.model.Question">
+        SELECT * FROM question ORDER BY read_num desc  ;
     </select>
     <select id="getQuestionById" resultType="edu.hunau.model.Question">
-        SELECT creat_time ,title, content,user_id,read_num,answer_num FROM question where id =#{id}  ;
+        SELECT * FROM question where id =#{id}  ;
     </select>
     <delete id="deleteById">
         DELETE FROM question WHERE id = #{id};
     </delete>
-    <update id="addReadNum">
+    <update id="addReadNumById">
         UPDATE question SET read_num = read_num+1 WHERE  id= #{id};
     </update>
-    <update id="addAnswerNum">
+    <update id="addAnswerNumById">
         UPDATE question SET answer_num = answer_num+1 WHERE   id= #{id};
     </update>
 

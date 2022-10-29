@@ -7,6 +7,7 @@ import edu.hunau.dao.UserDao;
 import edu.hunau.model.Answer;
 import edu.hunau.model.Comment;
 import edu.hunau.model.Question;
+import edu.hunau.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,11 +32,11 @@ class WizardApplicationTests {
         answer.setUserId(11);
         answer.setQuestionId(11);
 
-        List<Answer> allAnswers = answerDao.getAllAnswers();
-        for (Answer answ : allAnswers
-        ) {
-            System.out.println(answ);
-        }
+//        List<Answer> allAnswers = answerDao.getAllAnswers();
+//        for (Answer answ : allAnswers
+//        ) {
+//            System.out.println(answ);
+//        }
 
         //delete
         //   answerDao.deleteById(1);
@@ -48,13 +49,27 @@ class WizardApplicationTests {
 //            comment.setUserId(1);
 //            comment.setAnswerId(3);
 //            commentDao.addComment(comment);
-        List<Comment> allComment = commentDao.getAllComment(2);
-        for (Comment commit:allComment
-             ) {
-            System.out.println(commit);
-        }
+//        List<Comment> allComment = commentDao.getAllComment(2);
+//        for (Comment commit:allComment
+//             ) {
+//            System.out.println(commit);
+//        }
 
 
-
+//        Question question = new Question();
+//        question.setUserId(1);
+//        question.setTitle("fg");
+//        question.setContent("ga");
+//        List<Question> allQuestions = questionDao.getAllQuestions();
+//        for (Question questio:allQuestions
+//             ) {
+//            System.out.println(questio);
+//        }
+        User user = new User();
+        user.setUsername("hh");
+        user.setPassword("21414");
+        user.setTel("fafaf");
+        user.setEmail("agagaga");
+        userDao.update(user);
     }
 }

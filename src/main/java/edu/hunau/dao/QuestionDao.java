@@ -15,16 +15,16 @@ public interface QuestionDao {
 
     /**
      * 删除一个提问
-     * @param question
+     * @param
      */
-    void deleteQuestion(Question question);
+    void deleteById(Integer id);
 
     /**
      * 通过id获得单挑提问
      * @param question_id
      * @return
      */
-    Question getSingleQuestionById(Integer question_id);
+    Question getQuestionById(Integer question_id);
 
     /**
      * 获取所有提问
@@ -61,8 +61,9 @@ public interface QuestionDao {
 
     /**
      * 收藏一个提问
-     * @param userId
+     * @param
      */
 //    void collectionByUser(Integer userId);
-
+    void addReadNumById(Integer id);
+    void addAnswerNumById(Integer id);
 }

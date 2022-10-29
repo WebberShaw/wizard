@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.hunau.dao.AnswerDao">
 <insert id="addAnswer">
-    insert into answer(content,author_id,problem_id)values (#{content},#{authorId},#{problemId});
+    insert into answer(content,user_id,question_id)values (#{content},#{userId},#{questionId});
 </insert>
 <select id="getAllAnswers" resultType="edu.hunau.model.Answer">
-    SELECT * FROM answer where question_id=#{questionId} ORDER BY likes desc ;
+    SELECT * FROM answer where queston_id=#{questionId} ORDER BY likes desc ;
 </select>
 <delete id="deleteById">
     DELETE FROM answer WHERE question_id = #{id};

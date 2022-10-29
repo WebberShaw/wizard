@@ -15,7 +15,7 @@ public interface UserDao {
      * 更新、补全更多用户信息
      * @param user
      */
-    void updateUser(User user);
+    void update(User user);
 
     /**
      * 删除用户
