@@ -22,5 +22,7 @@ public interface UserService {
 
     void deleteUser(Integer userId);
 
+    User login(User user);
+
 
 }

@@ -2,6 +2,7 @@ package edu.hunau.dao;
 
 import edu.hunau.model.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserDao {
@@ -23,6 +24,15 @@ public interface UserDao {
      */
 
     void deleteUser(Integer userId);
+
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
+    @Select("select * from user where password = #{password} AND tel=#{tel}")
+    User getUserByTelAndPassword(User user);
+
 
 
 }
