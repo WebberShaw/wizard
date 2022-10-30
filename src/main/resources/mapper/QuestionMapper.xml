@@ -13,7 +13,7 @@
         SELECT * FROM question where id =#{id}  ;
     </select>
     <select id="getQuestionByParams" resultType="edu.hunau.model.Question">
-        select * from question where title like #{params}
+        select * from question where title like #{params} or content like #{params}
     </select>
     <delete id="deleteById">
         DELETE FROM question WHERE id = #{id};

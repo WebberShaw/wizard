@@ -1,10 +1,13 @@
 package edu.hunau.controller;
 
 import edu.hunau.model.Question;
+import edu.hunau.model.User;
 import edu.hunau.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -23,6 +26,26 @@ public class QuestionController {
         key="%"+key+"%";
         List<Question> questionByParams = questionService.getQuestionByParams(key);
         return new Result(Code.OK,questionByParams,"获取成功");
+    }
+
+    @GetMapping("/id/{id}")
+    public Result getById(@PathVariable Integer id){
+
+        Question singleQuestionById = questionService.getSingleQuestionById(id);
+        questionService.addReadNum(id);
+        return new Result(Code.OK,singleQuestionById,"获取成功");
+    }
+
+    @PostMapping
+    public Result addQuestion(@RequestBody Question question, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        if(user==null){
+            return new Result(Code.NOT_LOGIN,false,"请先完成登录再进行此操作");
+        }
+        question.setUserId(user.getId());
+        questionService.addQuestion(question);
+        return new Result(Code.OK,true);
     }
 
 }

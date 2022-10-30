@@ -5,6 +5,8 @@ import edu.hunau.model.Question;
 import java.util.List;
 
 public interface QuestionService {
+    void addReadNum(Integer questionId);
+    void incraseAnsNum(Integer questionId);
     /**
      * 添加一个提问
      * @param question

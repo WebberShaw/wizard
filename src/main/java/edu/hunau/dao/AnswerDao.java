@@ -20,7 +20,7 @@ public interface AnswerDao {
      *
      * @return List Answer
      */
-    List<Answer> getAllAnswers();
+    List<Answer> getAllAnswers(Integer questionId);
 
     /**
      * 通过answerId删除答案

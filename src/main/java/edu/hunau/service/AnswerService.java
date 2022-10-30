@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface AnswerService {
 
+
+
+
     /**
      * 添加一个答案
      * @param answer
@@ -51,6 +54,8 @@ public interface AnswerService {
      * @return
      */
     Integer getTotalAnswerNum(Integer questionId);
+
+
 
 
 }

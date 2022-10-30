@@ -26,7 +26,7 @@ public class UserController {
         if(login!=null){
             HttpSession session = request.getSession();
             System.out.println(session);
-            session.setAttribute("user",user);
+            session.setAttribute("user",login);
             return new Result(Code.OK,user);
         }else {
             return new Result(Code.ERR,null,"登录失败，请检查用户名或密码");
@@ -72,6 +72,17 @@ public class UserController {
         return new Result(Code.OK,true,"注册成功，3秒后跳转至登录页面");
 
 
+
+    }
+
+    @GetMapping("/check")
+    public Result checkLogin(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        if(user!=null){
+            return new Result(Code.IS_LOGIN,user);
+        }
+        return new Result(Code.NOT_LOGIN,null);
 
     }
 

@@ -56,8 +56,8 @@
             </div>
             <!--Comment-->
             <form class="d-flex justify-content-center flex-wrap my-2" method="post">
-                <div class="my-2"><input class="form-control" type="text" name="search" placeholder="ArrayIndexOutOfBoundsException是怎么回事" style="min-width: 0px;max-width: 400px;width: 400px;" value=""></div>
-                <div class="my-2"><button class="btn btn-primary ms-sm-2" type="submit">搜索</button></div>
+                <div class="my-2"><input class="form-control" type="text" name="search" placeholder="ArrayIndexOutOfBoundsException是怎么回事" style="min-width: 0px;max-width: 400px;width: 400px;" value="" v-model="key"></div>
+                <div class="my-2"><button class="btn btn-primary ms-sm-2" type="button" @click="search()">搜索</button></div>
             </form>
         </div>
     </section>
@@ -71,8 +71,8 @@
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
                     <form>
                         <div class="row">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control" type="text" placeholder="ArrayIndexOutOfBoundsException是怎么回事" style="height: 45px;background: var(--bs-gray-100);" value="ArrayIndexOutOfBoundsException是怎么回事" name="search"></div>
-                            <div class="col-12 col-md-3"><button class="btn btn-primary btn-lg me-sm-5" type="submit" style="margin-right: 4px;border-radius: 20;backdrop-filter: invert(42%) saturate(116%) sepia(56%);width: 150px;">立即搜索</button></div>
+                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control" type="text" placeholder="ArrayIndexOutOfBoundsException是怎么回事" v-model="key" style="height: 45px;background: var(--bs-gray-100);" value="ArrayIndexOutOfBoundsException是怎么回事" name="search"></div>
+                            <div class="col-12 col-md-3"><button class="btn btn-primary btn-lg me-sm-5" type="button" style="margin-right: 4px;border-radius: 20;backdrop-filter: invert(42%) saturate(116%) sepia(56%);width: 150px;" @click="search()">立即搜索</button></div>
                         </div>
                     </form>
                 </div>
@@ -189,18 +189,25 @@
 
     var app= new Vue({
         el:'#app',
+
         data:{
             user :{
                 username:'',
                 password:'',
                 tel:'',
             },
+            key:"",
 
             isLogin: false,
 
 
         },
         methods:{
+            search(){
+                // this.key=window.encodeURIComponent(this.key);
+                // console.log(this.key);
+                window.location.href="/search.html?key="+this.key;
+            },
           login(){
               axios.post("/users/login",this.user).then((res)=>{
                   if(res.data.code==2001) {

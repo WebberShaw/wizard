@@ -12,9 +12,20 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
     QuestionDao questionDao;
+
+    @Override
+    public void addReadNum(Integer questionId) {
+        questionDao.addReadNumById(questionId);
+    }
+
+    @Override
+    public void incraseAnsNum(Integer questionId) {
+        questionDao.addAnswerNumById(questionId);
+    }
+
     @Override
     public void addQuestion(Question question) {
-
+        questionDao.addQuestion(question);
     }
 
 
@@ -27,7 +38,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Question getSingleQuestionById(Integer question_id) {
 
-        return null;
+        return questionDao.getQuestionById(question_id);
     }
 
     @Override

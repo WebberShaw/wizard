@@ -7,6 +7,10 @@ public class Code {
 //    public static final Integer GET_OK=20041;
 
     public static final Integer ERR=2000;
+    public static final Integer IS_LOGIN=2003;
+    public static final Integer NOT_LOGIN=2004;
+
+
 //    public static final Integer DELETE_ERR=20020;
 //    public static final Integer UPDATE_ERR=20030;
 //    public static final Integer GET_ERR=20040;
