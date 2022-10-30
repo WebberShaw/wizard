@@ -93,9 +93,22 @@
             </form>
         </div>
     </section>
-    <div class="overlay" style="width: 1426px;margin-top: 10;"></div>
+    <div class="overlay" style="width: 1426px;margin-top:10 ;"></div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://geodata.solutions/includes/countrystate.js"></script>
 </body>
-
+<script>
+    var app =new Vue({
+        el: '#app',
+        data:{
+            user:{
+                username:'',
+                password:'',
+                tel:'',
+                email:'',
+                company:'',
+                school:''
+            }}
+    })
+</script>
 </html>

@@ -73,7 +73,6 @@ class WizardApplicationTests {
         user.setPassword("21414");
         user.setTel("11111");
         user.setEmail("agagaga");
-//        System.out.println(questionDao.getAllQuestions());
-        System.out.println(questionDao.getQuestionByParams("%f%"));
+        userService.addUser(user);
     }
 }
