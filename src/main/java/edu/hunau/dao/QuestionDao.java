@@ -2,9 +2,11 @@ package edu.hunau.dao;
 
 import edu.hunau.model.Question;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 @Mapper
 public interface QuestionDao {
     /**
@@ -37,6 +39,7 @@ public interface QuestionDao {
      * @param params
      * @return
      */
+
     List<Question> getQuestionByParams(String params);
 
     /**

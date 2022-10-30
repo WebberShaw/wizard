@@ -39,7 +39,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Question> getQuestionByParams(String params) {
-        return null;
+        return questionDao.getQuestionByParams(params);
     }
 
     @Override

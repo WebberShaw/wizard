@@ -57,7 +57,7 @@
     </div>
     <div class="list-group">
 <!--        <a class="list-group-item list-group-item-action flex-column align-items-start" v-for="(question,i) in questions" :href="/questions.html?{{question.questionId}}}">-->
-        <a class="list-group-item list-group-item-action flex-column align-items-start" v-for="(question,i) in questions" href="/question.html#">
+        <a class="list-group-item list-group-item-action flex-column align-items-start" v-for="(question,i) in questions" href="/question.html?">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{question.title}}</h5><small>{{question.creatTime}}</small>
             </div>
@@ -79,6 +79,7 @@
     var app = new Vue({
         el:"#app",
         data:{
+            key:'',
             questions:[],
         },
         methods:{
@@ -89,9 +90,24 @@
                     }
                 });
             },
+            getByKey(){
+                axios.get("/questions/key/"+this.key).then((res)=>{
+                    if(res.data.code==2001){
+                        this.questions=res.data.data;
+                    }
+                });
+            },
         },
         created() {
-            this.getAll();
+            if(window.location.search==''){
+                this.getAll();
+            }else {
+                var arr = window.location.search.split('=');
+                this.key =window.decodeURIComponent(arr[1]);
+                this.getByKey();
+
+            }
+
         },
 
 
