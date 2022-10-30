@@ -8,6 +8,7 @@ import edu.hunau.model.Answer;
 import edu.hunau.model.Comment;
 import edu.hunau.model.Question;
 import edu.hunau.model.User;
+import edu.hunau.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,9 +25,11 @@ class WizardApplicationTests {
     QuestionDao questionDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    UserService userService;
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
         Answer answer = new Answer();
         answer.setContent("22");
         answer.setUserId(11);
@@ -66,10 +69,10 @@ class WizardApplicationTests {
 //            System.out.println(questio);
 //        }
         User user = new User();
-        user.setUsername("hh");
+        user.setUsername("aa");
         user.setPassword("21414");
-        user.setTel("fafaf");
+        user.setTel("11111");
         user.setEmail("agagaga");
-        userDao.update(user);
+        userService.addUser(user);
     }
 }

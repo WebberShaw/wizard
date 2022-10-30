@@ -25,4 +25,7 @@ public interface UserService {
     User login(User user);
 
 
+    Boolean checkTele(User user);
+
+
 }

@@ -2,9 +2,10 @@ package edu.hunau.service.impl;
 
 import edu.hunau.model.Answer;
 import edu.hunau.service.AnswerService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class AnswerServiceImpl implements AnswerService {
 
     @Override

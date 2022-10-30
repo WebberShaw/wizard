@@ -34,5 +34,16 @@ public interface UserDao {
     User getUserByTelAndPassword(User user);
 
 
+    /**
+     * 检查电话唯一性
+     * @param user
+     * @return
+     */
+    @Select("select * from user where tel=#{tel}")
+    User getUserByTel(User user);
+
+
+
+
 
 }

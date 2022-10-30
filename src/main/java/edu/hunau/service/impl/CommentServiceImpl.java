@@ -2,9 +2,10 @@ package edu.hunau.service.impl;
 
 import edu.hunau.model.Comment;
 import edu.hunau.service.CommentService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CommentServiceImpl implements CommentService {
 
     @Override

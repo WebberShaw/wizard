@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
     @Override
     public void addUser(User user) {
-
+        userDao.addUser(user);
     }
 
     @Override
@@ -29,5 +29,10 @@ public class UserServiceImpl implements UserService {
     public User login(User user) {
         User resUser = userDao.getUserByTelAndPassword(user);
         return resUser;
+    }
+
+    @Override
+    public Boolean checkTele(User user) {
+        return userDao.getUserByTel(user)==null;
     }
 }
