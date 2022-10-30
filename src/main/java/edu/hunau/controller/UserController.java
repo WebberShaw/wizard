@@ -16,6 +16,16 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Autowired
     private UserService userService;
+    @GetMapping("/get")
+    public Result getLogin(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user!=null){
+            return new Result(Code.OK,user);
+        }
+        return new Result(Code.ERR,false,"您未登录");
+    }
+
     @PostMapping("/login")
     public Result login(@RequestBody User user, HttpServletRequest request){
         System.out.println(user);

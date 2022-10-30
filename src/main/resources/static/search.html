@@ -50,7 +50,7 @@
         <div class="col-md-10 offset-md-1">
             <div class="card m-auto" style="max-width:850px">
                 <div class="card-body">
-                    <form class="d-flex align-items-center"><i class="fas fa-search d-none d-sm-block h4 text-body m-0"></i><input class="form-control form-control-lg flex-shrink-1 form-control-borderless" type="search" placeholder="Dev C++为什么不支持C99" name="searchbar"><button class="btn btn-success btn-lg" type="submit" style="width: 200px;">Go Wizard</button></form>
+                    <form class="d-flex align-items-center"><i class="fas fa-search d-none d-sm-block h4 text-body m-0"></i><input class="form-control form-control-lg flex-shrink-1 form-control-borderless" type="search" placeholder="Dev C++为什么不支持C99" name="searchbar" v-model="key"><button class="btn btn-success btn-lg" type="button" @click="search()" style="width: 200px;">Go Wizard</button></form>
                 </div>
             </div>
         </div>
@@ -93,11 +93,16 @@
     var app = new Vue({
         el:"#app3",
         data:{
-            key:'',
+            key:"",
             link:'111',
             questions:[],
         },
         methods:{
+            search(){
+                // this.key=window.encodeURIComponent(this.key);
+                // console.log(this.key);
+                window.location.href="/search.html?key="+this.key;
+            },
             getAll(){
                 axios.get("/questions").then((res)=>{
                     if(res.data.code==2001){

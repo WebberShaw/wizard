@@ -55,10 +55,12 @@
                 <p class="mb-0"></p>
             </div>
             <!--Comment-->
-            <form class="d-flex justify-content-center flex-wrap my-2" method="post">
+            <div class="d-flex justify-content-center flex-wrap my-2">
                 <div class="my-2"><input class="form-control" type="text" name="search" placeholder="ArrayIndexOutOfBoundsException是怎么回事" style="min-width: 0px;max-width: 400px;width: 400px;" value="" v-model="key"></div>
                 <div class="my-2"><button class="btn btn-primary ms-sm-2" type="button" @click="search()">搜索</button></div>
-            </form>
+            </div>
+
+
         </div>
     </section>
     <header class="text-center text-white masthead" style="background: url('assets/img/bg-showcase-2.jpg')no-repeat center center;background-size: cover;">
@@ -71,10 +73,11 @@
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
                     <form>
                         <div class="row">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control" type="text" placeholder="ArrayIndexOutOfBoundsException是怎么回事" v-model="key" style="height: 45px;background: var(--bs-gray-100);" value="ArrayIndexOutOfBoundsException是怎么回事" name="search"></div>
-                            <div class="col-12 col-md-3"><button class="btn btn-primary btn-lg me-sm-5" type="button" style="margin-right: 4px;border-radius: 20;backdrop-filter: invert(42%) saturate(116%) sepia(56%);width: 150px;" @click="search()">立即搜索</button></div>
+                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control" type="text" placeholder="ArrayIndexOutOfBoundsException是怎么回事" v-model="key" style="height: 45px;background: var(--bs-gray-100);" value="ArrayIndexOutOfBoundsException是怎么回事"></div>
+                            <div class="col-12 col-md-3"><button class="btn btn-primary btn-lg me-sm-5" style="margin-right: 4px;border-radius: 20;backdrop-filter: invert(42%) saturate(116%) sepia(56%);width: 150px;" @click="search">立即搜索</button></div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -88,7 +91,7 @@
         <h6 class="text-themecolor font-weight-normal text-uppercase">立即登录，加入Bug星球</h6>
         <h4 class="my-3">登录</h4>
         <h6 class="subtitle mt-3 font-weight-normal">遇到Bug，立即登录发布提问，编程难题快速解决</h6>
-        <form class="mt-4">
+        <div class="mt-4">
           <div class="form-group">
             <input class="form-control" type="number" placeholder="输入您的电话" v-model="user.tel"/>
           </div><br>
@@ -105,40 +108,40 @@
               </div>
             </div>
           </div>
-        </form>
+        </div>
           <button class="btn btn-danger-gradiant btn-block btn-md text-uppercase text-white border-0" @click="login()">登录 </button>
       </div>
       <!-- column  -->
       <div class="col-lg-6 ml-auto">
         <div class="d-block d-md-flex border-bottom pb-3 text-uppercase">
-          <h6 class="no-shrink font-weight-medium align-self-center m-b-0">Latest News At WrapKit</h6>
-          <a class="ml-auto text-danger align-self-center text-decoration-none" href="#">View All</a>
+          <h6 class="no-shrink font-weight-medium align-self-center m-b-0">最新提问</h6>
+          <a class="ml-auto text-danger align-self-center text-decoration-none" href="/search.html">查看所有</a>
         </div>
         <div class="row blog-row mt-4 mb-3">
           <div class="col-md-4">
-            <a href="#"><img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img12.jpg" alt="wrapkit" class="img-fluid" /></a>
+            <a href="#"><img src="https://img1.baidu.com/it/u=1989959759,3741225722&fm=253&fmt=auto&app=138&f=PNG?w=534&h=500" alt="wrapkit" class="img-fluid" /></a>
           </div>
           <div class="col-md-8">
-            <h5><a href="#" class="text-decoration-none">The Universe is all of time and space and its contents.</a></h5>
-            <p>by <a href="#" class="text-decoration-none">Mark Freeman</a> / 23 May 2017</p>
+            <h5><a href="#" class="text-decoration-none">c语言下标-1为什么有值</a></h5>
+            <p>by <a href="#" class="text-decoration-none">By WenboXiao</a> /2022-10-30</p>
           </div>
         </div>
         <div class="row blog-row my-3">
           <div class="col-md-4">
-            <a href="#"><img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img13.jpg" alt="wrapkit" class="img-fluid" /></a>
+            <a href="#"><img src="https://img2.baidu.com/it/u=4044307889,3583288738&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=280" alt="wrapkit" class="img-fluid" /></a>
           </div>
           <div class="col-md-8">
-            <h5><a href="#" class="text-decoration-none">Pellentesque mollis eros quis massa interdum porta et vel.</a></h5>
-            <p>by <a href="#" class="text-decoration-none">Mark Freeman</a> / 23 May 2017</p>
+            <h5><a href="#" class="text-decoration-none">mybatis如何模糊查询</a></h5>
+            <p>by <a href="#" class="text-decoration-none">By 李凯贤</a> / 2022-10-30</p>
           </div>
         </div>
         <div class="row blog-row my-3">
           <div class="col-md-4">
-            <a href="#"><img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img14.jpg" alt="wrapkit" class="img-fluid" /></a>
+            <a href="#"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190915%2F09f635f33f45483996bae7a2807bf221.png&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1669707074&t=cda8daa612cf0140db825fc3fd7eae1d" alt="wrapkit" class="img-fluid" /></a>
           </div>
           <div class="col-md-8">
-            <h5><a href="#" class="text-decoration-none">Duis vel viverra quamam molesvulputate femy.</a></h5>
-            <p>by <a href="#" class="text-decoration-none">Mark Freeman</a> / 23 May 2017</p>
+            <h5><a href="#" class="text-decoration-none">Java如何数组为什么会报错</a></h5>
+            <p>by <a href="#" class="text-decoration-none">By Webber</a> / 2022-10-30</p>
           </div>
         </div>
       </div>
