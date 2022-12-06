@@ -4,11 +4,11 @@ import edu.hunau.model.User;
 import edu.hunau.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+//import org.springframework.web.context.request.RequestContextHolder;
+//import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -20,6 +20,7 @@ public class UserController {
     public Result getLogin(HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        user.setPassword(null);
         if(user!=null){
             return new Result(Code.OK,user);
         }
@@ -63,6 +64,7 @@ public class UserController {
     public Result register(@RequestBody User user){
         String tel = user.getTel();
         String password = user.getPassword();
+
         if(tel.length()!=11||tel.charAt(0)!='1'){
 
             return new Result(Code.ERR,false,"电话号码格式有误");
@@ -92,8 +94,11 @@ public class UserController {
         if(user!=null){
             return new Result(Code.IS_LOGIN,user);
         }
+
         return new Result(Code.NOT_LOGIN,null);
 
     }
+
+
 
 }

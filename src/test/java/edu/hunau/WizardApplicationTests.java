@@ -10,11 +10,17 @@ import edu.hunau.model.Question;
 import edu.hunau.model.User;
 import edu.hunau.service.AnswerService;
 import edu.hunau.service.UserService;
+import edu.hunau.utils.SenderUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootTest
 class WizardApplicationTests {
@@ -32,10 +38,16 @@ class WizardApplicationTests {
     @Autowired
     AnswerService answerService;
 
+    @Autowired
+    JavaMailSender javaMailSender;
+
 
 
     @Test
     public void contextLoads() {
+
+
+
         Answer answer = new Answer();
         answer.setContent("22");
         answer.setUserId(11);
@@ -86,5 +98,10 @@ class WizardApplicationTests {
         answerService.addAnswer(answer1);
 
 
+    }
+
+    @Test
+    public void mailTest(){
+        System.out.println(userService.sendRegisterMessageCode("15367525826", SenderUtil.OTHER_TEXT_MESSAGE_CODE));
     }
 }

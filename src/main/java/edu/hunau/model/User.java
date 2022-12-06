@@ -1,13 +1,19 @@
 package edu.hunau.model;
 
-import java.time.LocalDateTime;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import java.time.LocalDateTime;
+@Validated//开启注入校验
 public class User {
     private int id;
     private  String  username;
     private String  school;
     private String tel;
+
     private String password;
+    @Email
     private  String email;
     private String company;
 

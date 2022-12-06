@@ -27,5 +27,9 @@ public interface UserService {
 
     Boolean checkTele(User user);
 
+    int sendRegisterEmailCode(String to);
+    int sendRegisterMessageCode(String to,int type);
+
+
 
 }

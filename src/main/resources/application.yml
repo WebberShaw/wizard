@@ -7,6 +7,11 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
       pool-prepared-statements: true
+  mail:
+    host: smtp.exmail.qq.com
+    username: wenboxiao@stu.hunau.edu.cn
+    password: Xiaoge0225
+    default-encoding: utf-8
 mybatis:
   type-aliases-package: edu.hunau.dao
   mapper-locations: classpath*:mapper/*.xml
