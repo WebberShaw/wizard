@@ -17,6 +17,16 @@ public class User {
     private  String email;
     private String company;
 
+    private int verifyCode;
+
+    public int getVerifyCode() {
+        return verifyCode;
+    }
+
+    public void setVerifyCode(int verifyCode) {
+        this.verifyCode = verifyCode;
+    }
+
     public String getCompany() {
         return company;
     }

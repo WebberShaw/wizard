@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public int sendRegisterMessageCode(String to,int type) {
+    public int sendMessageCode(String to,int type) {
         int code = (int) (Math.random()*1000000+1);
         if(!senderUtil.sendTextMessage(to,code,SenderUtil.REGISTER_TEXT_MESSAGE_CODE)){
             return 0;

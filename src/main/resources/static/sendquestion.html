@@ -29,6 +29,15 @@
     <link rel="stylesheet" href="assets/css/Search-Input-Responsive-with-Icon.css">
     <link rel="stylesheet" href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
     <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">
+    <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+    <style>
+        #editor—wrapper {
+            border: 1px solid #ccc;
+            z-index: 100; /* 按需定义 */
+        }
+        #toolbar-container { border-bottom: 1px solid #ccc; }
+        #editor-container { height: 500px; }
+    </style>
 </head>
 
 <body background="v2-a9084de2356db5c3c7ff9f66e94ecc69_hd.jpg">
@@ -57,20 +66,29 @@
             <div class="my-2"><button class="btn btn-primary ms-sm-2" type="submit">搜索</button></div>
         </form>
     </div>
-    <div class="container">
-        <div class="row row-custom">
-            <div class="col-10 col-sm-6 col-md-4 offset-1 offset-sm-3 offset-md-4">
+<!--    <div class="container">-->
+    <div>
+<!--        <div class="row row-custom">-->
+        <div>
+<!--            <div class="col-10 col-sm-6 col-md-4 offset-1 offset-sm-3 offset-md-4">-->
+            <div>
                 <h1 class="text-center">我有Bug</h1>
                 <div>
                     <div class="card-body">
                         <h3 class="text-danger">大神们正在火速赶来</h3>
+
                         <form>
                             <div class="form-group mb-3"><label class="form-label">Bug摘要</label><input class="form-control" type="text" v-model="formData.title"></div>
-                            <div class="form-group mb-3"><label class="form-label">提问详情</label><textarea class="form-control" rows="12" v-model="formData.content"></textarea></div></form>
-                        <button class="btn btn-success d-block w-100" type="button" @click="submit()">发布</button>
+<!--                            <div class="form-group mb-3"><label class="form-label">提问详情</label><textarea class="form-control" rows="12" v-model="formData.content"></textarea></div></form>-->
 
+                        </form>
                     </div>
                 </div>
+                <div id="editor—wrapper">
+                    <div id="toolbar-container"><!-- 工具栏 --></div>
+                    <div id="editor-container"><!-- 编辑器 --></div>
+                </div>
+                <button class="btn btn-success d-block w-100" type="button" @click="submit()">发布</button>
             </div>
         </div>
     </div>
@@ -82,13 +100,16 @@
     <script src="./assets/js/axios-0.18.0.js"></script>
 </div>
 </body>
+
+<script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
 <script>
     var app =new Vue({
         el: '#app20',
         data:{
             formData:{
                 title:'',
-                content:''
+                content:'',
+                richtextContent:''
             },
 
             user:{
@@ -102,24 +123,70 @@
 
         methods:{
             submit(){
+                console.log(this.formData)
                 axios.post("/questions",this.formData).then((res)=>{
                     if(res.data.data){
-                        this.$message.success("提问成功三秒后返回上一页");
-                        setTimeout("jumpBack()",3000);
+                        this.$message.success("提问成功，3秒后返回上一页");
+                        setTimeout(function jumpBack() {
+                                window.history.go(-1);
+                        }
+                        ,3000);
                     }else {
                         this.$message.error("请先登录，3秒后返回登录页面");
-                        setTimeout("jumpToLogin()",3000);
+                        setTimeout(function jumpToLogin() {
+                            window.location.href='/login.html';
+                        }
+                        ,3000);
                     }
                 });
             }
-        }
+        },
+        mounted() {
+            // 模拟 ajax 请求，异步渲染编辑器
+
+        },
+
     })
-    function jumpToLogin() {
-        window.location.href='/login.html';
+
+    const { createEditor, createToolbar } = window.wangEditor
+
+
+    const editorConfig = {
+        placeholder: 'Type here...',
+        onChange: function(editor) {
+            const html = editor.getHtml();
+            const text = editor.getText();
+            app.formData.richtextContent=html;
+            app.formData.content=text;
+
+            // console.log('editor content', html);
+            // console.log('app.formData.content', app.formData.content);
+            // 也可以同步到 <textarea>
+        }
     }
-    function jumpBack() {
-        window.history.go(-1);
-    }
+
+
+    const editor = createEditor({
+        selector: '#editor-container',
+        html: '<p><br></p>',
+        config: editorConfig,
+        mode: 'default', // or 'simple'
+    })
+
+    const toolbarConfig = {}
+
+    const toolbar = createToolbar({
+        editor,
+        selector: '#toolbar-container',
+        config: toolbarConfig,
+        mode: 'default', // or 'simple'
+    })
+    // function jumpToLogin() {
+    //     window.location.href='/login.html';
+    // }
+    // function jumpBack() {
+    //     window.history.go(-1);
+    // }
 </script>
 
 </html>

@@ -1,10 +1,13 @@
 package edu.hunau.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class Comment {
     private  Integer id ;
     private String content;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime creatTime;
     private Integer likes;
     private int userId;

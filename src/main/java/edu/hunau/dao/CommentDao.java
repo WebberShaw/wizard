@@ -24,6 +24,7 @@ public interface CommentDao {
      * 取消给这个评论点赞
      * @param commentId
      */
+
     void cancelCommentLike(Integer commentId);
 
     /**

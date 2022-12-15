@@ -102,6 +102,6 @@ class WizardApplicationTests {
 
     @Test
     public void mailTest(){
-        System.out.println(userService.sendRegisterMessageCode("15367525826", SenderUtil.OTHER_TEXT_MESSAGE_CODE));
+        System.out.println(userService.sendMessageCode("15367525826", SenderUtil.OTHER_TEXT_MESSAGE_CODE));
     }
 }

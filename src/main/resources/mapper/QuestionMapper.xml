@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.hunau.dao.QuestionDao">
     <insert id="addQuestion">
-        INSERT INTO question ( user_id,title,content)VALUES(#{userId},#{title},#{content});
+        INSERT INTO question ( user_id,title,content,richtext_content)VALUES(#{userId},#{title},#{content},#{richtextContent});
     </insert>
     <select id="getAllQuestions" resultType="edu.hunau.model.Question">
         SELECT * FROM question ORDER BY read_num desc  ;
@@ -19,7 +19,7 @@
         DELETE FROM question WHERE id = #{id};
     </delete>
     <update id="addReadNumById">
-        UPDATE question SET read_num = read_num+1 WHERE  id= #{id};
+        UPDATE question SET read_num = read_num+1 WHERE id= #{id};
     </update>
     <update id="addAnswerNumById">
         UPDATE question SET answer_num = answer_num+1 WHERE   id= #{id};

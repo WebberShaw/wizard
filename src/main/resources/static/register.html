@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html" xmlns:v-on="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -66,7 +66,19 @@
             <form :model="user" method="post"style="height: 525px;" >
                 <label :style="dispColor">{{reg_msg.msg}}</label>
                 <h2 class="text-center">注册</h2>
-                <div class="form-group mb-3"><input class="form-control" type="text" name="username" placeholder="用户名" v-model="user.username"><input class="form-control" type="tel" name="tel" placeholder="电话号码" v-model="user.tel" v-on:blur="checkTele"></div><script>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="username" placeholder="用户名" v-model="user.username">
+                </div>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="tel" name="tel" placeholder="电话号码" v-model="user.tel" v-on:blur="checkTele">
+                </div>
+                <div class="form-group mb-3">
+                    <el-input maxlength="6" name="verifyCode" placeholder="验证码" type="text" v-model="user.verifyCode" >
+                        <el-button slot="append" @click="sendVerifyCode">获取验证码</el-button>
+                    </el-input>
+                </div>
+
+                <script>
     // Submit button made with javascript
     // function changePassword() {
     //     var password = document.querySelector("#password").value;
@@ -137,6 +149,24 @@
             dispColor: "color : red"
         },
         methods: {
+            sendVerifyCode(){
+                var _this= this;
+                if(this.checkTele()){
+                    axios.get("/users/verifycode/"+_this.user.tel).then(function (resp) {
+                        // _this.reg_msg = resp.data;
+                        if(resp.data.code==2000){
+                            _this.$message.error(resp.data.msg);
+                        }else if(resp.data.code==2001){
+                            _this.$message.success(resp.data.msg);
+                        }
+
+                    })
+
+                }else {
+                    this.$message.error("请先正确输入电话号码");
+                }
+            },
+
             submit() {
                 var _this = this;
                 console.log(_this.user);
@@ -214,6 +244,6 @@
 
     })
     function jump() {
-        window.location.href='/login.html';
+        window.location.href='/more-info.html';
     }
 </script>

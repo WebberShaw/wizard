@@ -1,12 +1,25 @@
 package edu.hunau.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class Question {
+    private String richtextContent;
+
+    public String getRichtextContent() {
+        return richtextContent;
+    }
+
+    public void setRichtextContent(String richtextContent) {
+        this.richtextContent = richtextContent;
+    }
+
     private int  id;
     private int userId;
     private String title;
     private String content;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime  creatTime;
     private  int readNum;
     private int answerNum;

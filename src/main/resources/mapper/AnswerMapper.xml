@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.hunau.dao.AnswerDao">
 <insert id="addAnswer">
-    insert into answer(content,user_id,question_id)values (#{content},#{userId},#{questionId});
+    insert into answer(content,richtext_content,user_id,question_id)values (#{content},#{richtextContent},#{userId},#{questionId});
 </insert>
 <select id="getAllAnswers" resultType="edu.hunau.model.Answer">
     SELECT content, answer.id as 'id',answer.creat_time as 'creat_time',user_id,username,likes FROM answer,user where answer.question_id=#{questionId} and answer.user_id = user.id ORDER BY likes desc;

@@ -3,7 +3,32 @@ package edu.hunau.model;
 import java.time.LocalDateTime;
 
 public class Answer {
-private int id;
+    private String richtextContent;
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "richtextContent='" + richtextContent + '\'' +
+                ", id=" + id +
+                ", creatTime=" + creatTime +
+                ", content='" + content + '\'' +
+                ", userId=" + userId +
+                ", likes=" + likes +
+                ", updateTime=" + updateTime +
+                ", questionId=" + questionId +
+                ", username='" + username + '\'' +
+                '}';
+    }
+
+    public String getRichtextContent() {
+        return richtextContent;
+    }
+
+    public void setRichtextContent(String richtextContent) {
+        this.richtextContent = richtextContent;
+    }
+
+    private int id;
 private LocalDateTime creatTime;
 private String content;
 private int userId;
@@ -19,19 +44,6 @@ private String username;
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    @Override
-    public String toString() {
-        return "Answer{" +
-                "id=" + id +
-                ", creatTime=" + creatTime +
-                ", content='" + content + '\'' +
-                ", userId=" + userId +
-                ", likes=" + likes +
-                ", updateTime=" + updateTime +
-                ", questionId=" + questionId +
-                '}';
     }
 
     public Answer() {

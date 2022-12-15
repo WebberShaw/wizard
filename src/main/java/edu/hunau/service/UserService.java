@@ -19,16 +19,20 @@ public interface UserService {
      * 删除用户
      * @param userId
      */
-
     void deleteUser(Integer userId);
 
+    /**
+     * 用户登录
+     * @param user
+     * @return User
+     */
     User login(User user);
 
 
     Boolean checkTele(User user);
 
     int sendRegisterEmailCode(String to);
-    int sendRegisterMessageCode(String to,int type);
+    int sendMessageCode(String to,int type);
 
 
 

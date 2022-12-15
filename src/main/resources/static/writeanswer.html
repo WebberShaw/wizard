@@ -30,6 +30,15 @@
     <link rel="stylesheet" href="assets/css/Search-Input-Responsive-with-Icon.css">
     <link rel="stylesheet" href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
     <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">
+    <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+    <style>
+        #editor—wrapper {
+            border: 1px solid #ccc;
+            z-index: 100; /* 按需定义 */
+        }
+        #toolbar-container { border-bottom: 1px solid #ccc; }
+        #editor-container { height: 500px; }
+    </style>
 </head>
 
 <body background="v2-a9084de2356db5c3c7ff9f66e94ecc69_hd.jpg">
@@ -54,7 +63,11 @@
                 <p class="mb-0">写回答</p>
             </blockquote>
             <figcaption class="blockquote-footer"></figcaption>
-        </figure><textarea class="form-control" style="height: 900px;" v-model="formData.content"></textarea><button class="btn btn-primary" type="button" @click="submit()">提交</button>
+        </figure><div id="editor—wrapper">
+        <div id="toolbar-container"><!-- 工具栏 --></div>
+        <div id="editor-container"><!-- 编辑器 --></div>
+    </div>
+        <button class="btn btn-primary" type="button" @click="submit()">提交</button>
     </form>
     <section></section>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -62,6 +75,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="./plugins/elementui/index.js"></script>
     <script src="./assets/js/axios-0.18.0.js"></script>
+    <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
 </div>
 </body>
  <script>
@@ -77,14 +91,11 @@
                 company:'',
                 school:''
             },
-            answer:{
-                content:'',
-                likes:'',
-                createTime:''
-            },
+
 
             formData:{
                 content: '',
+                richtextContent:'',
                 questionId: 0,
             }
         },
@@ -133,5 +144,37 @@
      function jumpBack() {
          window.history.go(-1);
      }
+     const { createEditor, createToolbar } = window.wangEditor
+
+
+     const editorConfig = {
+         placeholder: 'Type here...',
+         onChange: function(editor) {
+             const html = editor.getHtml();
+             const text = editor.getText();
+             app.formData.richtextContent=html;
+             app.formData.content=text;
+             // console.log('editor content', html);
+             // console.log('app.formData.content', app.answer.content);
+             // 也可以同步到 <textarea>
+         }
+     }
+
+
+     const editor = createEditor({
+         selector: '#editor-container',
+         html: '<p><br></p>',
+         config: editorConfig,
+         mode: 'default', // or 'simple'
+     })
+
+     const toolbarConfig = {}
+
+     const toolbar = createToolbar({
+         editor,
+         selector: '#toolbar-container',
+         config: toolbarConfig,
+         mode: 'default', // or 'simple'
+     })
  </script>
 </html>

@@ -28,6 +28,7 @@ public class AnswerController {
 
     @PostMapping()
     public Result addAnswer(@RequestBody Answer answer, HttpServletRequest request){
+        System.out.println(answer);
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");
         if(user==null){
@@ -36,6 +37,12 @@ public class AnswerController {
         int userId = user.getId();
         System.out.println(user+"----------------------------------------------------------");
         answer.setUserId(userId);
+        String content = answer.getContent();
+        if(content.length()>128){
+            answer.setContent(content.substring(0,123)+"...");
+
+
+        }
         answerService.addAnswer(answer);
         questionService.incraseAnsNum(answer.getQuestionId());
 
