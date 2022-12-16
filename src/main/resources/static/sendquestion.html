@@ -30,6 +30,10 @@
     <link rel="stylesheet" href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
     <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">
     <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <style>
         #editor—wrapper {
             border: 1px solid #ccc;
@@ -49,11 +53,25 @@
             <div class="collapse navbar-collapse" id="navcol-5">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.html">首页</a></li>
-                    <li class="nav-item"><a class="nav-link" href="search.html">Bug星球</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sendquestion.html">提问</a></li>
-                </ul><a class="btn btn-primary ms-md-2" role="button" href="login.html">登录</a>
+                    <li class="nav-item"><a class="nav-link hover" href="search.html">Bug星球</a></li>
+                    <li class="nav-item"><a class="nav-link hover" href="sendquestion.html">提问</a></li>
+
+
+                    <a class="btn btn-primary ms-md-2" role="button" href="login.html" v-if="userInfo==null">登录</a>
+
+                    <div v-else-if="userInfo!=null">
+                        <a  href="user.html" class="nav-link active" style="float: left">{{userInfo.username}}</a>
+                        <el-avatar :src="userInfo.avatarPath" style="float: right"></el-avatar>
+                    </div>
+
+
+
+
+
+                </ul>
             </div>
         </div>
+
     </nav>
     <div class="container bg-light border rounded border-0 border-light d-flex flex-column justify-content-between align-items-center flex-lg-row p-4 p-lg-5 pb-sm-0 mt-sm-0 mb-sm-0" style="height: 30px;margin: 0px 0px;font-size: 10px;max-width: 1440PX;padding-top: 12px;">
         <div class="text-center text-lg-start py-3 py-lg-1">
@@ -96,7 +114,7 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://geodata.solutions/includes/countrystate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="./plugins/elementui/index.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="./assets/js/axios-0.18.0.js"></script>
 </div>
 </body>
@@ -106,6 +124,7 @@
     var app =new Vue({
         el: '#app20',
         data:{
+            userInfo:null,
             formData:{
                 title:'',
                 content:'',
@@ -132,7 +151,7 @@
                         }
                         ,3000);
                     }else {
-                        this.$message.error("请先登录，3秒后返回登录页面");
+                        this.$message.error("登录已过期，3秒后返回登录页面");
                         setTimeout(function jumpToLogin() {
                             window.location.href='/login.html';
                         }
@@ -141,8 +160,14 @@
                 });
             }
         },
-        mounted() {
-            // 模拟 ajax 请求，异步渲染编辑器
+
+        created() {
+            // 从 localstorage 中获取存储的用户信息字符串
+            let userInfoString = localStorage.getItem('userInfo');
+
+            // 将字符串转换回 JavaScript 对象
+            this.userInfo = JSON.parse(userInfoString);
+
 
         },
 

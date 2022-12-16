@@ -19,6 +19,33 @@ public class User {
 
     private int verifyCode;
 
+    private String avatarPath;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", school='" + school + '\'' +
+                ", tel='" + tel + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", company='" + company + '\'' +
+                ", verifyCode=" + verifyCode +
+                ", avatarPath='" + avatarPath + '\'' +
+                ", creatTime=" + creatTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+
     public int getVerifyCode() {
         return verifyCode;
     }
@@ -103,20 +130,6 @@ public class User {
     }
 
     public User() {
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", school='" + school + '\'' +
-                ", tel='" + tel + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", creatTime=" + creatTime +
-                ", updateTime=" + updateTime +
-                '}';
     }
 
     public User(int id, String username, String school, String tel, String password, String email, LocalDateTime creatTime, LocalDateTime updateTime) {

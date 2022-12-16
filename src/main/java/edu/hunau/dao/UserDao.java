@@ -3,6 +3,7 @@ package edu.hunau.dao;
 import edu.hunau.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface UserDao {
@@ -41,6 +42,9 @@ public interface UserDao {
      */
     @Select("select * from user where tel=#{tel}")
     User getUserByTel(User user);
+
+
+
 
 
 

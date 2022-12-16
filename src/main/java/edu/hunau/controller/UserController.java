@@ -39,7 +39,8 @@ public class UserController {
             HttpSession session = request.getSession();
             System.out.println(session);
             session.setAttribute("user",login);
-            return new Result(Code.OK,user);
+            login.setPassword(null);
+            return new Result(Code.OK,login);
         }else {
             return new Result(Code.ERR,null,"登录失败，请检查用户名或密码");
         }
@@ -103,8 +104,8 @@ public class UserController {
         }catch (Exception e){
             return new Result(Code.ERR,false,"注册失败，请联系管理员");
         }
-
-        return new Result(Code.OK,true,"注册成功，3秒后跳转至资料完善页面");
+        user.setPassword(null);
+        return new Result(Code.OK,user,"注册成功，3秒后跳转至资料完善页面");
 
 
 
@@ -151,6 +152,7 @@ public class UserController {
         }
     }
 
+    @Deprecated//该方法已经过时，建议采用getLogin的/get路径进行请求
     @GetMapping("/check")
     public Result checkLogin(HttpServletRequest request){
         HttpSession session = request.getSession();

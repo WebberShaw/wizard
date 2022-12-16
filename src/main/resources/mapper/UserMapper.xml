@@ -10,17 +10,34 @@
 <update id="update">
     UPDATE
         user
-    SET
+    <set>
+            <if test="username != null and username !=''">
         username = #{username},
+            </if>
+        <if test="school != null and school !=''">
         school = #{school},
+        </if>
+        <if test="company != null and company !=''">
         company = #{company},
+        </if>
+        <if test="tel != null and tel !=''">
         tel = #{tel},
+        </if>
+        <if test="password != null and password !=''">
         password = #{password},
-        email = #{email}
+        </if>
+        <if test="email != null and email !=''">
+        email = #{email},
+        </if>
+        <if test="avatarPath != null and avatarPath !=''">
+        avatar_path = #{avatarPath}
+        </if>
+    </set>
 
-    WHERE id = id;
+    WHERE #{id} = id;
 
 </update>
+
     <delete id="deleteById">
         DELETE FROM user WHERE id = #{id};
     </delete>

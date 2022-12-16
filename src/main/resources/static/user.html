@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="assets/css/Search-Input-Responsive-with-Icon.css">
     <link rel="stylesheet" href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
     <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 
 <body background="v2-a9084de2356db5c3c7ff9f66e94ecc69_hd.jpg">
@@ -40,11 +44,25 @@
             <div class="collapse navbar-collapse" id="navcol-5">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.html">首页</a></li>
-                    <li class="nav-item"><a class="nav-link" href="search.html">Bug星球</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sendquestion.html">提问</a></li>
-                </ul><a class="btn btn-primary ms-md-2" role="button" href="login.html">登录</a>
+                    <li class="nav-item"><a class="nav-link hover" href="search.html">Bug星球</a></li>
+                    <li class="nav-item"><a class="nav-link hover" href="sendquestion.html">提问</a></li>
+
+
+                    <a class="btn btn-primary ms-md-2" role="button" href="login.html" v-if="userInfo==null">登录</a>
+
+                    <div v-else-if="userInfo!=null">
+                        <a  href="user.html" class="nav-link active" style="float: left">{{userInfo.username}}</a>
+                        <el-avatar :src="userInfo.avatarPath" style="float: right"></el-avatar>
+                    </div>
+
+
+
+
+
+                </ul>
             </div>
         </div>
+
     </nav>
     <div class="container bg-light border rounded border-0 border-light d-flex flex-column justify-content-between align-items-center flex-lg-row p-4 p-lg-5 pb-sm-0 mt-sm-0 mb-sm-0" style="height: 30px;margin: 0px 0px;font-size: 10px;max-width: 1440PX;padding-top: 12px;">
         <div class="text-center text-lg-start py-3 py-lg-1">
@@ -97,6 +115,7 @@
     <div class="overlay" style="width: 1426px;margin-top:10 ;"></div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://geodata.solutions/includes/countrystate.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </div>
 </body>
 <script>
