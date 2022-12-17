@@ -69,6 +69,8 @@
             <p style="margin-left: 385px;">您的教育背景和就职信息通过认证后将显示在问答下方</p>
         </div>
         <form action="index.html" method="post" enctype="multipart/form-data" role="form" style="width:40%;margin: 0 auto;">
+            <el-radio v-model="type" label="1">备选项</el-radio>
+            <el-radio v-model="type" label="2">备选项</el-radio>
             <div class="form-group mb-3"><label class="form-label">就读学校</label><input class="form-control"
                     type="text" placeholder="湖南农业大学" name="school" required=""></div>
             <div class="form-group mb-3"><label class="form-label">所在公司</label><input class="form-control"
@@ -101,5 +103,6 @@
 <script>
     var app =new Vue({
         el:"#page"
+
     })
 </script>

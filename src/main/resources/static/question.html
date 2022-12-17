@@ -31,10 +31,131 @@
     <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入 Prism.js 的 CSS 文件 -->
+    <link href="https://unpkg.com/prismjs@latest/themes/prism.css" rel="stylesheet">
+
+    <!-- 引入 Prism.js 的 JS 文件 -->
+
+
+    <style>
+
+        #editor {
+            /* 设置边框、背景颜色、字体大小和颜色 */
+            border: 1px solid #ccc;
+            background-color: #fff;
+            font-size: 14px;
+            color: #333;
+
+            /* 设置宽度和高度 */
+            width: 100%;
+            /*min-height: 300px;*/
+
+            /* 设置自动增长 */
+            overflow: auto;
+
+            /* 设置内边距 */
+            padding: 10px;
+        }
+
+        /* 在移动端调整样式 */
+        @media screen and (max-width: 600px) {
+            #editor {
+                /* 调整宽度和高度 */
+                width: 100%;
+                /*min-height: 300px;*/
+
+                /* 设置自动增长 */
+                overflow: auto;
+
+                /* 调整内边距 */
+                padding: 5px;
+            }
+        }
+
+
+        #editor pre {
+            background-color: #f9f9f9;  /* 设置代码块的背景颜色为浅灰色 */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        #editor table {
+            /* 设置边框、边框线样式、边框颜色和边框宽度 */
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            border-color: #666;
+            border-width: 1px;
+
+            /* 设置表格宽度 */
+            width: 100%;
+        }
+
+        #editor td,
+        #editor th {
+            /* 设置边框、边框线样式、边框颜色和边框宽度 */
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            border-color: #666;
+            border-width: 1px;
+
+            /* 设置单元格内边距 */
+            padding: 10px;
+        }
+
+        #editor th {
+            /* 设置表头的背景颜色 */
+            background-color: #f5f5f5;
+
+            /* 设置表头的字体样式 */
+            font-weight: bold;
+        }
+        #editor p {
+            /* 设置字体大小、字体颜色和行高 */
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+        #editor h1 {
+            /* 设置字体大小、字体颜色和字体样式 */
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #editor h2 {
+            /* 设置字体大小、字体颜色和字体样式 */
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #editor h3 {
+            /* 设置字体大小、字体颜色和字体样式 */
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+        #editor a {
+            /* 设置字体颜色和字体样式 */
+            color: #00f;
+            font-weight: bold;
+
+            /* 设置链接的访问样式 */
+            text-decoration: none;
+        }
+
+        #editor a:hover {
+            /* 设置链接的 hover 样式 */
+            text-decoration: underline;
+        }
+
+    </style>
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
-<body>
+<body style="background-color: #a0cfff">
 
 <div id="app">
     <nav class="navbar navbar-dark navbar-expand-md bg-dark py-3">
@@ -83,7 +204,9 @@
 
     <hr>
         <br>
-        <div v-html="question.richtextContent"></div>
+
+        <div id="editor" v-html="question.richtextContent"></div>
+
     <hr>
     <dl class="row">
 
@@ -114,10 +237,15 @@
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/prism.js"></script>
+<script src="https://unpkg.com/prismjs@latest/prism.js"></script>
+<script src="https://unpkg.com/prismjs@latest/components/prism-core.js"></script>
+<script src="https://unpkg.com/prismjs@latest/plugins/autoloader/prism-autoloader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="./assets/js/axios-0.18.0.js"></script>
 <script>
+
     var app = new Vue({
         el:"#app",
         data:{
@@ -135,8 +263,10 @@
                 axios.get("/answers/"+id).then((res)=>{
                     if(res.data.code==2001){
                         this.answers=res.data.data;
+
                     }
                 });
+                // Prism.highlightAll();
             },
 
             get(id){
@@ -144,9 +274,11 @@
                     if(res.data.code==2001){
 
                         this.question=res.data.data;
+
                         console.log("-------------------------------");
                         console.log(this.question);
-                        this.getAllAnswer(res.data.data.id);
+
+
                     }else {
                         this.$message.error("加载失败，请重试");
                     }
@@ -159,6 +291,7 @@
 
 
         created() {
+
             let userInfoString = localStorage.getItem('userInfo');
 
             // 将字符串转换回 JavaScript 对象
@@ -172,6 +305,10 @@
 
 
         },
+        updated() {
+            Prism.highlightAll();
+        }
+
 
 
     })

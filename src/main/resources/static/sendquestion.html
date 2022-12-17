@@ -143,6 +143,10 @@
         methods:{
             submit(){
                 console.log(this.formData)
+                if(this.formData.title==null||this.formData.title===""){
+                    this.$message.error("请输入Bug摘要，此项为必填项");
+                    return;
+                }
                 axios.post("/questions",this.formData).then((res)=>{
                     if(res.data.data){
                         this.$message.success("提问成功，3秒后返回上一页");
@@ -164,12 +168,37 @@
         created() {
             // 从 localstorage 中获取存储的用户信息字符串
             let userInfoString = localStorage.getItem('userInfo');
+            if(userInfoString==null){
+                this.$message.error("请先登录，三秒后自动跳转");
+                setTimeout(function jumpToLogin() {
+                        window.location.href='/login.html';
+                    }
+                    ,3000);
+            }
+
 
             // 将字符串转换回 JavaScript 对象
             this.userInfo = JSON.parse(userInfoString);
 
 
         },
+        mounted() {
+            axios.get("/users/get").then((res)=>{
+                if(res.data.code==2001){
+                    console.log("用户登录状态核验成功",res);
+                    return;
+
+
+                }else {
+                    localStorage.removeItem("userInfo");
+                    this.$message.error("您的登录已过期，请重新登录。三秒后自动跳转至登录页面");
+                    setTimeout(function jumpToLogin() {
+                            window.location.href='/login.html';
+                        }
+                        ,3000);
+                }
+            })
+        }
 
     })
 
@@ -199,6 +228,8 @@
     })
 
     const toolbarConfig = {}
+    editorConfig.placeholder = '请输入内容...'
+
 
     const toolbar = createToolbar({
         editor,

@@ -21,8 +21,9 @@ public class UserController {
     public Result getLogin(HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        user.setPassword(null);
+
         if(user!=null){
+            user.setPassword(null);
             return new Result(Code.OK,user);
         }
         return new Result(Code.ERR,false,"您未登录");
@@ -105,6 +106,8 @@ public class UserController {
             return new Result(Code.ERR,false,"注册失败，请联系管理员");
         }
         user.setPassword(null);
+        user.setAvatarPath("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png");
+        session.setAttribute("user",user);
         return new Result(Code.OK,user,"注册成功，3秒后跳转至资料完善页面");
 
 

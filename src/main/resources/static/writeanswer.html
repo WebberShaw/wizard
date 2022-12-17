@@ -145,8 +145,15 @@
              }
          },
          created() {
-             // 从 localstorage 中获取存储的用户信息字符串
              let userInfoString = localStorage.getItem('userInfo');
+             if(userInfoString==null){
+                 this.$message.error("请先登录，三秒后自动跳转");
+                 setTimeout(function jumpToLogin() {
+                         window.location.href='/login.html';
+                     }
+                     ,3000);
+             }
+
 
              // 将字符串转换回 JavaScript 对象
              this.userInfo = JSON.parse(userInfoString);
@@ -158,6 +165,21 @@
 
 
          },
+         mounted() {
+             axios.get("/users/get").then((res)=>{
+                 if(res.data.code==2001){
+
+
+                 }else {
+                     localStorage.removeItem("userInfo");
+                     this.$message.error("您的登录已过期，请重新登录。三秒后自动跳转至登录页面");
+                     setTimeout(function jumpToLogin() {
+                             window.location.href='/login.html';
+                         }
+                         ,3000);
+                 }
+             })
+         }
 
 
          // window.history.go(-1);
