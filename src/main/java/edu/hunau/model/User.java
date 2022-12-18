@@ -21,6 +21,8 @@ public class User {
 
     private String avatarPath;
 
+    private int identity;
+
     @Override
     public String toString() {
         return "User{" +
@@ -33,9 +35,18 @@ public class User {
                 ", company='" + company + '\'' +
                 ", verifyCode=" + verifyCode +
                 ", avatarPath='" + avatarPath + '\'' +
+                ", identity=" + identity +
                 ", creatTime=" + creatTime +
                 ", updateTime=" + updateTime +
                 '}';
+    }
+
+    public int getIdentity() {
+        return identity;
+    }
+
+    public void setIdentity(int identity) {
+        this.identity = identity;
     }
 
     public String getAvatarPath() {

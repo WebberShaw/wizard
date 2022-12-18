@@ -3,6 +3,8 @@ package edu.hunau.controller;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import edu.hunau.config.StorageConfig;
+import edu.hunau.model.User;
+import edu.hunau.service.UserService;
 import edu.hunau.utils.BlobHelper;
 import edu.hunau.utils.FileUploadUtil;
 import edu.hunau.utils.MyUtils;
@@ -26,11 +28,15 @@ import static com.google.common.io.Files.getFileExtension;
 public class FileUploadController {
     @Autowired
     FileUploadUtil fileUploadUtil;
+    @Autowired
+    UserService userService;
     @RequestMapping(value = "/uploadAvatar", method = RequestMethod.POST, consumes = "multipart/*", headers = "content-type=multipart/form-data")
     public Object uploadAvatar(@RequestBody MultipartFile file, HttpServletRequest request) {
-        if(request.getSession().getAttribute("User")==null){
+        User user = (User)request.getSession().getAttribute("user");
+        if(user==null){
             return new Result(Code.NOT_LOGIN,null,"用户登录已失效，请重新登录");
         }
+
         if (!(file.getContentType().toLowerCase().equals("image/jpg")
                 || file.getContentType().toLowerCase().equals("image/jpeg")
                 || file.getContentType().toLowerCase().equals("image/png"))) {
@@ -38,6 +44,9 @@ public class FileUploadController {
         }
         String url = fileUploadUtil.uploadFile(file);
         if(url!=null){
+            user.setAvatarPath(url);
+            userService.updateUser(user);
+            request.getSession().setAttribute("user",user);
             return new Result(Code.OK,url,"头像上传成功");
         }
         return new Result(Code.ERR,null,"头像上传失败");

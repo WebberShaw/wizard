@@ -30,8 +30,12 @@
         email = #{email},
         </if>
         <if test="avatarPath != null and avatarPath !=''">
-        avatar_path = #{avatarPath}
+        avatar_path = #{avatarPath},
         </if>
+        <if test="identity != null and identity != 0">
+            identity= #{identity}
+        </if>
+
     </set>
 
     WHERE #{id} = id;

@@ -120,6 +120,8 @@
 
 
     var app= new Vue({
+
+
         el:'#app',
         data:{
             userInfo: null,
@@ -175,7 +177,10 @@
 
     })
     function jump() {
-        window.history.go(-1);
+
+        window.location.replace(document.referrer);
+
+
     }
 
 </script>

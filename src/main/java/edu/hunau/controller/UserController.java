@@ -168,6 +168,36 @@ public class UserController {
 
     }
 
+    @GetMapping("/sendEmail/{to}")
+    public Result sendEmail(@PathVariable String to,HttpServletRequest request) {
+        try {
+            HttpSession session = request.getSession();
+            if(session.getAttribute("emailVerifyCode")!=null){
+                Object verifyCodeTimeObj = session.getAttribute("emailVerifyCodeTime");
+                long verifyCodeTime =0;
+                if(verifyCodeTimeObj!=null){
+                    verifyCodeTime = (long)verifyCodeTimeObj;
+                }else {
+                    return new Result(Code.ERR,null,"上次发送时间未记录，请联系管理员");
+                }
+                long gapTime=(System.currentTimeMillis()-verifyCodeTime)/1000;
+                if(gapTime<60){
+                    return new Result(Code.ERR,null,"邮箱验证码已发送,请耐心等待，或在"+(60-gapTime)+"秒后重试");
+                }
+            }
+            int verifyCode = userService.sendRegisterEmailCode(to);
+            if(verifyCode!=0) {
+                session.setAttribute("emailVerifyCode", verifyCode);
+            }else {
+                return new Result(Code.ERR,null,"发送失败，请联系管理员");
+            }
+            session.setAttribute("emailVerifyCodeTime",System.currentTimeMillis());
 
 
+            return new Result(Code.OK,null,"发送成功，请注意查收，180秒内有效");
+        }catch (Exception e){
+            System.out.println(e);
+            return new Result(Code.ERR,null,"发送失败，请联系管理员");
+        }
+    }
 }

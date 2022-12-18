@@ -37,7 +37,31 @@
 </head>
 
 <body >
-    <style>
+<style>
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+    }
+    .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
+    }
+
         body {
             /* background-color: rgba(89,76,87,0.3); */
             /* background-color: rgb(180,178,178); */
@@ -78,32 +102,60 @@
             <p style="margin-left: 385px;">您的教育背景和就职信息通过认证后将显示在问答下方</p>
         </div>
         <form action="index.html" method="post" enctype="multipart/form-data" role="form" style="width:40%;margin: 0 auto;">
-            <div class="form-group mb-3"><label class="form-label">您的身份</label>
-                <el-radio v-model="type" label="1" border>在校学生</el-radio>
-                <el-radio v-model="type" label="2" border>职场程序员</el-radio>
+            <div class="form-group mb-3"><label class="form-label">上传头像</label>
+                <el-upload
+                        class="avatar-uploader"
+                        action="/files/uploadAvatar"
+                        :show-file-list="false"
+                        :on-success="handleAvatarSuccess"
+                        :before-upload="beforeAvatarUpload">
+                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
             </div>
-            <div class="form-group mb-3"><label class="form-label">就读学校</label><input class="form-control"
-                    type="text" placeholder="湖南农业大学" name="school" required=""></div>
-            <div class="form-group mb-3"><label class="form-label">所在公司</label><input class="form-control"
+            <div class="form-group mb-3"><label class="form-label">您的身份</label>
+                <br>
+                <el-radio v-model="formData.identity" label="1" border>在校学生</el-radio>
+                <el-radio v-model="formData.identity" label="2" border>职场程序员</el-radio>
+            </div>
+            <div class="form-group mb-3" v-if="formData.identity==1">
+                <label class="form-label">就读学校</label>
+                <input class="form-control" type="text" placeholder="湖南农业大学" name="school" required="">
+            </div>
+            <div class="form-group mb-3" v-else-if="formData.identity==2"><label class="form-label">所在公司</label><input class="form-control"
                     type="text" autocomplete="off" required="" placeholder="腾讯科技有限公司" name="company"
                     title="输入您的公司"></div>
             <span>
                 <div class="form-group mb-3"><label class="form-label">邮箱</label>
                 <br>
-                <input class="form-control"
-                    type="email" autocomplete="off" required="" placeholder="xxx@stu.hunau.edu.cn" name="email"
-                    title="输入您的邮箱"  style="width: 75%; float: left;">
+                    <div style="text-align: center;display: flex; justify-content: space-between;">
+  <input class="form-control" type="email" autocomplete="off" required="" placeholder="xxx@stu.hunau.edu.cn" name="email" title="输入您的邮箱" style="display: inline-block;width: 75%; float: left;">
+  <button class="btn btn-primary" type="button" style="display: inline-block;float: right;margin-top: -20px; background-color: white; color:#adb5bd;" type="button">发送验证码</button>
+</div>
+
+                    <!--                <input class="form-control"-->
+<!--                    type="email" autocomplete="off" required="" placeholder="xxx@stu.hunau.edu.cn" name="email"-->
+<!--                          title="输入您的邮箱"  style="width: 75%; float: left;">-->
+<!--                    <button  class="btn btn-primary" style="float: right;margin-top: -20px; background-color: white; color:#adb5bd;" type="button">发送验证码</button>-->
                 </div>
-                    <button class="btn btn-primary" style="float: right;margin-top: -20px; background-color: white; color:#adb5bd;" type="button">发送验证码</button>
-                        
+
+
             </span>
+            <br>
+            <div class="form-group mb-3">
+                <label class="form-label">邮箱验证码</label>
+                <input class="form-control" type="text" placeholder="" name="verifyCode" required="">
+            </div>
             <!-- <span><input type="number" name="" id=""></span> -->
             <br>
             <hr style="margin-top: 30px;margin-bottom: 10px;">
             <div class="form-group mb-3" >
                 <button class="btn btn-primary d-block w-100" type="button" >
-                    <i class="fas fa-save"></i>&nbsp;保存</button></div>
+                    <i class="fas fa-save"></i>&nbsp;完成</button></div>
         </form>
+        <div style="text-align: center">
+            <el-button type="info" plain >跳过</el-button>
+        </div>
     </div>
 </div>
 </body>
@@ -117,11 +169,47 @@
     var app = new Vue({
         el: '#page',
         data:{
+            imageUrl: '',
             userInfo:null,
-            type: 0,
+            formData:{
+                identity: 0,
+                school: "",
+                company: "",
+                verifyCode: ""
+            },
         },
 
         methods:{
+            handleAvatarSuccess(res, file) {
+                if(res.code==2001) {
+                    this.$message.success(res.msg);
+                    this.imageUrl = URL.createObjectURL(file.raw);
+                    this.userInfo.avatarPath=res.data;
+                    let userInfoString = JSON.stringify(this.userInfo);
+                    // 将字符串存入 localstorage
+                    localStorage.setItem('userInfo', userInfoString);
+
+                }else {
+                    this.$message.error(res.msg);
+                }
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg'||file.type === 'image/png'||file.type === 'image/jpg';
+                const isLt2M = file.size / 1024 / 1024 < 10;
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG JPEG 或 PNG 格式!');
+
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 10MB!');
+                }
+                return isJPG && isLt2M;
+            },
+
+            sendEmail(){
+
+            },
 
         },
         created(){

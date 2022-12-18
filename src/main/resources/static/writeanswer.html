@@ -97,6 +97,7 @@
 </div>
 </body>
  <script>
+     import { mapState, mapActions } from 'vuex'
      var app =new Vue({
          el: '#app10',
         data:{
@@ -118,6 +119,7 @@
             }
         },
          methods:{
+
              get(id){
                  axios.get("/questions/id/"+id).then((res)=>{
                      if(res.data.code==2001){
@@ -175,6 +177,7 @@
                      this.$message.error("您的登录已过期，请重新登录。三秒后自动跳转至登录页面");
                      setTimeout(function jumpToLogin() {
                              window.location.href='/login.html';
+
                          }
                          ,3000);
                  }

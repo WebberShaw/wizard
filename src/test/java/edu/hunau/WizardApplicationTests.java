@@ -104,4 +104,14 @@ class WizardApplicationTests {
     public void mailTest(){
         System.out.println(userService.sendMessageCode("15367525826", SenderUtil.OTHER_TEXT_MESSAGE_CODE));
     }
+
+    @Test
+    public void userUpdateTest(){
+        User user = new User();
+        user.setTel("110");
+        user.setPassword("123");
+        User login = userService.login(user);
+        login.setAvatarPath("111");
+        userService.updateUser(login);
+    }
 }
