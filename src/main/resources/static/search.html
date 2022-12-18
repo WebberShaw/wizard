@@ -87,7 +87,7 @@
 <template>
     <div class="list-group">
         <div class="infinite-list-wrapper" style="overflow:auto">
-            <ul
+            <div
                     class="list"
                     v-infinite-scroll="load"
                     infinite-scroll-disabled="disabled">
@@ -105,7 +105,7 @@
             <small class="text-muted">{{questions[i-1].readNum}}浏览</small>
         </a>
                 </li>
-            </ul>
+            </div>
             <p v-if="loading" style="text-align: center">加载中...</p>
             <p v-if="noMore" style="text-align: center">没有更多了</p>
         </div>

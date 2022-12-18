@@ -113,6 +113,7 @@
             <h2 class="text-primary this-title" style="margin-top: 100px;margin-left: 385px;">完善信息，让更多人认识你<br></h2>
             <p class="this-title" style="margin-left: 385px;">您的教育背景和就职信息通过认证后将显示在问答下方</p>
         </div>
+        <p style="text-align: center">均非必填</p>
         <form action="index.html" method="post" class="profile-form" enctype="multipart/form-data" role="form" style="width:40%;margin: 0 auto;">
             <div class="form-group mb-3"><label class="form-label">上传头像</label>
                 <el-upload
@@ -132,17 +133,17 @@
             </div>
             <div class="form-group mb-3" v-if="formData.identity==1">
                 <label class="form-label">就读学校</label>
-                <input class="form-control" type="text" placeholder="湖南农业大学" name="school" required="">
+                <input v-model="formData.school" class="form-control" type="text" placeholder="湖南农业大学" name="school" required="">
             </div>
-            <div class="form-group mb-3" v-else-if="formData.identity==2"><label class="form-label">所在公司</label><input class="form-control"
+            <div class="form-group mb-3" v-else-if="formData.identity==2"><label class="form-label">所在公司</label><input v-model="formData.company" class="form-control"
                     type="text" autocomplete="off" required="" placeholder="腾讯科技有限公司" name="company"
                     title="输入您的公司"></div>
             <span>
                 <div class="form-group mb-3"><label class="form-label">邮箱</label>
                 <br>
                     <div style="text-align: center;display: flex; justify-content: space-between;">
-  <input class="form-control" type="email" autocomplete="off" required="" placeholder="xxx@stu.hunau.edu.cn" name="email" title="输入您的邮箱" style="display: inline-block;width: 75%; float: left;">
-  <button class="btn btn-primary" type="button" style="display: inline-block;float: right;margin-top: -20px; background-color: white; color:#adb5bd;" type="button">发送验证码</button>
+  <input v-model="formData.email" class="form-control" type="email" autocomplete="off" required="" placeholder="xxx@stu.hunau.edu.cn" name="email" title="输入您的邮箱" style="display: inline-block;width: 75%; float: left;">
+  <button class="btn btn-primary" type="button" style="display: inline-block;float: right;margin-top: -20px; background-color: white; color:#adb5bd;" type="button" @click="sendEmail">发送验证码</button>
 </div>
 
                     <!--                <input class="form-control"-->
@@ -156,17 +157,17 @@
             <br>
             <div class="form-group mb-3">
                 <label class="form-label">邮箱验证码</label>
-                <input class="form-control" type="text" placeholder="" name="verifyCode" required="">
+                <input class="form-control" type="text" placeholder="" name="verifyCode" required="" v-model="formData.verifyCode">
             </div>
             <!-- <span><input type="number" name="" id=""></span> -->
             <br>
             <hr style="margin-top: 30px;margin-bottom: 10px;">
             <div class="form-group mb-3" >
-                <button class="btn btn-primary d-block w-100" type="button" >
+                <button class="btn btn-primary d-block w-100" type="button"  @click="submit">
                     <i class="fas fa-save"></i>&nbsp;完成</button></div>
         </form>
         <div style="text-align: center">
-            <el-button type="info" plain >跳过</el-button>
+            <el-button href="/index.html" type="info" plain >跳过</el-button>
         </div>
     </div>
 </div>
@@ -176,6 +177,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./assets/js/axios-0.18.0.js"></script>
 
 <script>
     var app = new Vue({
@@ -187,11 +189,32 @@
                 identity: 0,
                 school: "",
                 company: "",
+                email: "",
                 verifyCode: ""
             },
         },
 
         methods:{
+            submit(){
+                if(this.formData.email!=""&&this.formData.verifyCode==""){
+                    this.$message.error("请输入验证码");
+                }else {
+                    axios.put("/users",this.formData).then((res)=>{
+                        if(res.data.code==2001){
+                            this.$message.success(res.data.msg);
+                            let userInfoString = JSON.stringify(res.data.data);
+                            // 将字符串存入 localstorage
+                            localStorage.setItem('userInfo', userInfoString);
+                            setTimeout(function jumpToLogin() {
+                                    window.location.href='/index.html';
+                                }
+                                ,3000);
+                        }else{
+                            this.$message.error(res.data.msg);
+                        }
+                    })
+                }
+            },
             handleAvatarSuccess(res, file) {
                 if(res.code==2001) {
                     this.$message.success(res.msg);
@@ -220,7 +243,18 @@
             },
 
             sendEmail(){
+                if(this.formData.email==""){
+                    this.$message.error('请输入邮箱');
+                }
+                axios.get("/users/sendEmail/"+this.formData.email).then((resp)=> {
+                    // _this.reg_msg = resp.data;
+                    if(resp.data.code==2000){
+                        this.$message.error(resp.data.msg);
+                    }else if(resp.data.code==2001){
+                        this.$message.success(resp.data.msg);
+                    }
 
+                })
             },
 
         },
@@ -230,6 +264,7 @@
             // 将字符串转换回 JavaScript 对象
             this.userInfo = JSON.parse(userInfoString);
         }
+
 
 
     })

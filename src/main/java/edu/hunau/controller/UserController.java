@@ -194,10 +194,49 @@ public class UserController {
             session.setAttribute("emailVerifyCodeTime",System.currentTimeMillis());
 
 
-            return new Result(Code.OK,null,"发送成功，请注意查收，180秒内有效");
+            return new Result(Code.OK,null,"发送成功，请注意查收，10分钟内有效");
         }catch (Exception e){
             System.out.println(e);
             return new Result(Code.ERR,null,"发送失败，请联系管理员");
         }
+    }
+
+    @PutMapping
+    public Result updateUser(@RequestBody User user,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user1 = (User)session.getAttribute("user");
+        if(user1==null){
+            return new Result(Code.ERR,null,"登录已过期，请重新登录");
+        }
+        user.setId(user1.getId());
+        if(user.getEmail()!=null){
+            Object verifyCodeTimeObj = session.getAttribute("emailVerifyCodeTime");
+            long verifyCodeTime =0;
+            if(verifyCodeTimeObj!=null){
+                verifyCodeTime=(long)verifyCodeTimeObj;
+            }
+            Object verifyCodeObj = session.getAttribute("emailVerifyCode");
+            int verifyCode =0;
+            if(verifyCodeObj!=null){
+                verifyCode=(int)verifyCodeObj;
+            }else {
+                return new Result(Code.ERR,false,"请先完成邮箱验证");
+            }
+            long gapTime=(System.currentTimeMillis()-verifyCodeTime)/1000;
+            if(verifyCode==0){
+                return new Result(Code.ERR,false,"邮箱验证失败");
+            } else if (user.getVerifyCode()!=verifyCode) {
+                return new Result(Code.ERR,false,"邮箱验证码错误");
+            } else if (gapTime>600) {
+                System.out.println(gapTime);
+                return new Result(Code.ERR,false,"验证码已过期，请重试");
+            }
+        }
+        userService.updateUser(user);
+        user.setPassword(null);
+        session.setAttribute("user",user);
+
+
+        return new Result(Code.OK,user,"保存成功，欢迎开启您的Wizard之旅");
     }
 }
