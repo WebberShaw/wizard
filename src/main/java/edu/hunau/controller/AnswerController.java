@@ -37,12 +37,6 @@ public class AnswerController {
         int userId = user.getId();
         System.out.println(user+"----------------------------------------------------------");
         answer.setUserId(userId);
-        String content = answer.getContent();
-        if(content.length()>128){
-            answer.setContent(content.substring(0,123)+"...");
-
-
-        }
         answerService.addAnswer(answer);
         questionService.incraseAnsNum(answer.getQuestionId());
 
