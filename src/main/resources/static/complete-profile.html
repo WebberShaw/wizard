@@ -167,7 +167,7 @@
                     <i class="fas fa-save"></i>&nbsp;完成</button></div>
         </form>
         <div style="text-align: center">
-            <el-button href="/index.html" type="info" plain >跳过</el-button>
+            <el-button @click="jump" type="info" plain >跳过</el-button>
         </div>
     </div>
 </div>
@@ -195,6 +195,9 @@
         },
 
         methods:{
+            jump(){
+                location.href='index.html';
+            },
             submit(){
                 if(this.formData.email!=""&&this.formData.verifyCode==""){
                     this.$message.error("请输入验证码");
@@ -245,6 +248,7 @@
             sendEmail(){
                 if(this.formData.email==""){
                     this.$message.error('请输入邮箱');
+                    return;
                 }
                 axios.get("/users/sendEmail/"+this.formData.email).then((resp)=> {
                     // _this.reg_msg = resp.data;

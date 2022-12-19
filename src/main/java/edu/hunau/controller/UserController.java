@@ -209,7 +209,7 @@ public class UserController {
             return new Result(Code.ERR,null,"登录已过期，请重新登录");
         }
         user.setId(user1.getId());
-        if(user.getEmail()!=null){
+        if(user.getEmail()!=null&&user.getEmail()!=""){
             Object verifyCodeTimeObj = session.getAttribute("emailVerifyCodeTime");
             long verifyCodeTime =0;
             if(verifyCodeTimeObj!=null){

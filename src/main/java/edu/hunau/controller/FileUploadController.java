@@ -3,6 +3,8 @@ package edu.hunau.controller;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import edu.hunau.config.StorageConfig;
+import edu.hunau.controller.image.Data;
+import edu.hunau.controller.image.ImageReturn;
 import edu.hunau.model.User;
 import edu.hunau.service.UserService;
 import edu.hunau.utils.BlobHelper;
@@ -10,10 +12,7 @@ import edu.hunau.utils.FileUploadUtil;
 import edu.hunau.utils.MyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,12 +25,20 @@ import static com.google.common.io.Files.getFileExtension;
 @RequestMapping("/files")
 @Slf4j
 public class FileUploadController {
+
+
+
     @Autowired
     FileUploadUtil fileUploadUtil;
     @Autowired
     UserService userService;
+
+
+
+
+
     @RequestMapping(value = "/uploadAvatar", method = RequestMethod.POST, consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public Object uploadAvatar(@RequestBody MultipartFile file, HttpServletRequest request) {
+    public Result uploadAvatar(@RequestBody MultipartFile file, HttpServletRequest request) {
         User user = (User)request.getSession().getAttribute("user");
         if(user==null){
             return new Result(Code.NOT_LOGIN,null,"用户登录已失效，请重新登录");
@@ -53,6 +60,28 @@ public class FileUploadController {
 
 
     }
+//    @PostMapping("/uploadImage")
+    @RequestMapping(value = "/uploadImage", method = RequestMethod.POST, consumes = "multipart/*", headers = "content-type=multipart/form-data")
+    public Object uploadImage(@RequestBody MultipartFile file, HttpServletRequest request) {
+        User user = (User)request.getSession().getAttribute("user");
+        if(user==null){
+            return new ImageReturn(1,"登录已过期，不允许进行此操作");
+        }
+
+        if (!(file.getContentType().toLowerCase().equals("image/jpg")
+                || file.getContentType().toLowerCase().equals("image/jpeg")
+                || file.getContentType().toLowerCase().equals("image/png"))) {
+            return new ImageReturn(1,"图片上传失败,仅支持jpg,png或jpeg格式的图片");
+        }
+        String url = fileUploadUtil.uploadFile(file);
+        if(url!=null){
+            return new ImageReturn(0,new Data(url,"[图片]",null));
+        }
+        return new ImageReturn(1,"图片上传失败");
+
+
+    }
+
 
 
 }

@@ -1,9 +1,9 @@
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 992px) {
     .search-bar {
 
         flex-direction: column; /* Change layout to column on mobile */
-        height: 100px !important;
+        height: auto !important;
         margin: 0 !important; /* Remove top and bottom margins */
         padding: 0 !important; /* Add padding to the top and bottom */
     !important;

@@ -112,13 +112,14 @@
         </div>
     </div>
     <div class="overlay" style="width: 1426px;margin-top: 10;"></div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://geodata.solutions/includes/countrystate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <script src="./assets/js/axios-0.18.0.js"></script>
+
 </div>
 </body>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://geodata.solutions/includes/countrystate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./assets/js/axios-0.18.0.js"></script>
 
 <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
 <script>
@@ -209,6 +210,7 @@
 
     const editorConfig = {
         placeholder: 'Type here...',
+        MENU_CONF:{},
         onChange: function(editor) {
             const html = editor.getHtml();
             const text = editor.getText();
@@ -222,23 +224,119 @@
     }
 
 
+    const toolbarConfig = {}
+    editorConfig.placeholder = '请输入内容...'
+
+
+
+    console.log(editorConfig.MENU_CONF['uploadImage']);
+    editorConfig.MENU_CONF['uploadImage'] = {
+        server: '/files/uploadImage',
+        fieldName: 'file',
+
+        // 单个文件的最大体积限制，默认为 2M
+        maxFileSize: 10 * 1024 * 1024, // 1M
+
+        // 最多可上传几个文件，默认为 100
+        maxNumberOfFiles: 50,
+
+        // 选择文件时的类型限制，默认为 ['image/*'] 。如不想限制，则设置为 []
+        allowedFileTypes: ['image/*'],
+
+        // 自定义上传参数，例如传递验证的 token 等。参数会被添加到 formData 中，一起上传到服务端。
+        meta: {
+            id: '',
+        },
+
+        // 将 meta 拼接到 url 参数中，默认 false
+        metaWithUrl: false,
+
+        // 自定义增加 http  header
+        headers: {
+            Accept: '*/*',
+            // otherKey: 'xxx'
+        },
+
+        // 跨域是否传递 cookie ，默认为 false
+        withCredentials: true,
+
+        // 超时时间，默认为 10 秒
+        timeout: 20 * 1000, // 5 秒
+        onBeforeUpload(file) {
+            checkfile=Object.values(file)[0];
+
+            const isJPG = checkfile.type === 'image/jpeg'||checkfile.type === 'image/png'||checkfile.type === 'image/jpg';
+            const isLt2M = checkfile.size / 1024 / 1024 < 10;
+
+
+
+            if (!isJPG) {
+                app.$notify.error({
+                    title: '上传失败',
+                    message: '上传头像图片只能是 JPG JPEG 或 PNG 格式!'
+                });
+                // app.$message.error('上传头像图片只能是 JPG JPEG 或 PNG 格式!');
+
+            }
+            if (!isLt2M) {
+                app.$notify.error({
+                    title: '上传失败',
+                    message: '上传头像图片大小不能超过 10MB!'
+                });
+                // app.$message.error('上传头像图片大小不能超过 10MB!');
+            }
+            if(isJPG && isLt2M) {
+                this.meta.id=Date.now().toString();
+                return file;
+            }else {
+                return false;
+            }
+        },
+        onFailed(file, res) {
+            app.$notify.error({
+                title: '上传失败',
+                message: res.message
+            });
+            console.log(`${file.name} 上传失败`, res)
+        },
+        onError(file, err, res) {
+            app.$notify.error({
+                title: '上传出错',
+                message: '出错啦，请检查网络状态或联系管理员'
+            });// JS 语法
+            console.log(`${file.name} 上传出错`, err, res)
+        },
+        onSuccess(file, res) {          // JS 语法
+            console.log(`${file.name} 上传成功`, res)
+            app.$notify({
+                title: '成功',
+                message: '您成功上传了一张图片',
+                type: 'success'
+            });
+        },
+        onProgress(progress) {
+            app.$notify({
+                title: '正在上传',
+                message: "当前上传进度: "+progress+"%",
+                duration: 0
+            });// JS 语法
+                                     // progress 是 0-100 的数字
+            console.log('progress', progress)
+        },
+    }
     const editor = createEditor({
         selector: '#editor-container',
         html: '<p><br></p>',
         config: editorConfig,
         mode: 'default', // or 'simple'
     })
-
-    const toolbarConfig = {}
-    editorConfig.placeholder = '请输入内容...'
-
-
     const toolbar = createToolbar({
         editor,
         selector: '#toolbar-container',
         config: toolbarConfig,
         mode: 'default', // or 'simple'
     })
+
     // function jumpToLogin() {
     //     window.location.href='/login.html';
     // }
