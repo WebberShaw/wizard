@@ -114,4 +114,8 @@ class WizardApplicationTests {
         login.setAvatarPath("111");
         userService.updateUser(login);
     }
+    @Test
+    public void addLikes(){
+        System.out.println(answerService.getLikeStatus(13, 27));
+    }
 }

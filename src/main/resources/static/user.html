@@ -44,8 +44,8 @@
             <div class="collapse navbar-collapse" id="navcol-5">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.html">首页</a></li>
-                    <li class="nav-item"><a class="nav-link hover" href="search.html">Bug星球</a></li>
-                    <li class="nav-item"><a class="nav-link hover" href="sendquestion.html">提问</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="search.html">Bug星球</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="sendquestion.html">提问</a></li>
 
 
                     <a class="btn btn-primary ms-md-2" role="button" href="login.html" v-if="userInfo==null">登录</a>
@@ -64,15 +64,14 @@
         </div>
 
     </nav>
-    <div class="container bg-light border rounded border-0 border-light d-flex flex-column justify-content-between align-items-center flex-lg-row p-4 p-lg-5 pb-sm-0 mt-sm-0 mb-sm-0" style="height: 30px;margin: 0px 0px;font-size: 10px;max-width: 1440PX;padding-top: 12px;">
-        <div class="text-center text-lg-start py-3 py-lg-1">
-            <h2 class="fw-bold mb-2">Wizard搜索</h2>
+    <div class="search-bar container bg-light border rounded border-0 border-light d-flex flex-column justify-content-between align-items-center flex-lg-row p-4 p-lg-5 pb-sm-0 mt-sm-0 mb-sm-0" style="height: 30px;margin: 0px 0px;font-size: 10px;max-width: 1440PX;">
+        <div class="text-center text-lg-start py-3 py-lg-1 search-title">
+            <h2 class="fw-bold mb-2 search-title">Wizard搜索</h2>
             <p class="mb-0"></p>
         </div>
-        <!--Comment-->
-        <form class="d-flex justify-content-center flex-wrap my-2" method="post">
-            <div class="my-2"><input class="form-control" type="text" name="search" placeholder="ArrayIndexOutOfBoundsException是怎么回事" style="min-width: 0px;max-width: 400px;width: 400px;" value=""></div>
-            <div class="my-2"><button class="btn btn-primary ms-sm-2" type="submit">搜索</button></div>
+        <form class="d-flex justify-content-center flex-wrap my-2 search-form" method="get" action="search.html">
+            <div class="my-2 search-inside-div"><input class="search-input form-control" type="text" name="key" placeholder="ArrayIndexOutOfBoundsException是怎么回事" style="width: 400px;"></div>
+            <div class="my-2 "><button class="search-btn btn btn-primary ms-sm-2" type="submit">搜索</button></div>
         </form>
     </div>
     <div class="card">
@@ -84,34 +83,21 @@
                         <li><i class="fa fa-user fa-li"></i><a href="#">James Doe</a></li>
                         <li><i class="fa fa-envelope fa-li"></i><a href="#">james.doe@gmail.com </a></li>
                         <li><i class="fa fa-phone fa-li"></i>(555) 555-5555</li>
+                        <li><i class="fa fa-chevron-down fa-li"></i></li>
                     </ul>
                 </div>
             </div>
-            <div><small>用户积分&nbsp;<i class="fa fa-info-circle text-info"></i></small>
-                <div class="progress progress-high">
-                    <div class="progress-bar bg-danger" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"><span class="visually-hidden">90%</span></div>
-                </div>
-            </div>
+<!--            <div><small>用户积分&nbsp;<i class="fa fa-info-circle text-info"></i></small>-->
+<!--                <div class="progress progress-high">-->
+<!--                    <div class="progress-bar bg-danger" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"><span class="visually-hidden">90%</span></div>-->
+<!--                </div>-->
+<!--            </div>-->
             <hr>
             <p><i class="fa fa-ticket fa-fw"></i> 1 General Admission Tickets: $25<br>
 <span class="text-muted"><i class="fa fa-calendar fa-fw"></i> May 12, 2016</span></p>
         </div>
     </div>
-    <section class="clean-block clean-form dark h-100">
-        <div class="container">
-            <div class="block-heading" style="padding-top: 0px;">
-                <h2 class="text-primary" style="margin-top: 100px;">完善信息，让更多人认识你<br></h2>
-                <p>您的教育背景和就职信息通过认证后将显示在问答下方</p>
-            </div>
-            <form action="index.html" method="post" enctype="multipart/form-data" role="form">
-                <div class="form-group mb-3"><label class="form-label">就读学校</label><input class="form-control" type="text" placeholder="湖南农业大学" name="school" required=""></div>
-                <div class="form-group mb-3"><label class="form-label">所在公司</label><input class="form-control" type="text" autocomplete="off" required="" placeholder="腾讯科技有限公司" name="company" title="输入您的公司"></div>
-                <div class="form-group mb-3"><label class="form-label">邮箱</label><input class="form-control" type="email" autocomplete="off" required="" placeholder="xxx@stu.hunau.edu.cn" name="email" title="输入您的邮箱"></div>
-                <hr style="margin-top: 30px;margin-bottom: 10px;">
-                <div class="form-group mb-3"><button class="btn btn-primary d-block w-100" type="submit"><i class="fas fa-save"></i>&nbsp;保存</button></div>
-            </form>
-        </div>
-    </section>
+
     <div class="overlay" style="width: 1426px;margin-top:10 ;"></div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://geodata.solutions/includes/countrystate.js"></script>
@@ -122,14 +108,42 @@
     var app =new Vue({
         el: '#app',
         data:{
-            user:{
-                username:'',
-                password:'',
-                tel:'',
-                email:'',
-                company:'',
-                school:''
-            }}
+            userInfo:null,
+        },
+        methods:{
+
+        },
+        created() {
+            let userInfoString = localStorage.getItem('userInfo');
+            if(userInfoString==null){
+                this.$message.error("请先登录，三秒后自动跳转");
+                setTimeout(function jumpToLogin() {
+                        window.location.href='/login.html';
+                    }
+                    ,3000);
+            }
+
+
+            // 将字符串转换回 JavaScript 对象
+            this.userInfo = JSON.parse(userInfoString);
+
+        },
+        mounted() {
+            axios.get("/users/get").then((res)=>{
+                if(res.data.code==2001){
+
+
+                }else {
+                    localStorage.removeItem("userInfo");
+                    this.$message.error("您的登录已过期，请重新登录。三秒后自动跳转至登录页面");
+                    setTimeout(function jumpToLogin() {
+                            window.location.href='/login.html';
+
+                        }
+                        ,3000);
+                }
+            })
+        }
 
 
     })

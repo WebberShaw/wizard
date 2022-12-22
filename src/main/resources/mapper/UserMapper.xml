@@ -7,7 +7,10 @@
     <insert id="addUser">
         INSERT INTO user(username,password,tel)VALUES(#{username},#{password},#{tel});
     </insert>
-<update id="update">
+    <insert id="likeAnAnswer">
+        INSERT into user_answer_like (answer_id, user_id) values (#{answerId},#{userId});
+    </insert>
+    <update id="update">
     UPDATE
         user
     <set>
@@ -45,5 +48,15 @@
     <delete id="deleteById">
         DELETE FROM user WHERE id = #{id};
     </delete>
+    <delete id="deleteLikes">
+        delete from user_answer_like where user_id=#{userId} and answer_id =#{answerId}
+    </delete>
+    <select id="getUserById" resultType="edu.hunau.model.User">
+        select * from user where id = #{id}
+    </select>
+    <select id="getLikeStatus" resultType="java.lang.Object">
+        select * from user_answer_like where user_id=#{userId} and answer_id =#{answerId}
+    </select>
+
 
 </mapper>

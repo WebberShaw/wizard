@@ -9,6 +9,10 @@ import java.util.List;
 @Repository
 @Mapper
 public interface QuestionDao {
+
+    @Select("select title from question where id = #{id}")
+    String getQuestionNameById(Integer id);
+
     /**
      * 添加一个提问
      * @param question

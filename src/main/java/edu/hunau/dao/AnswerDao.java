@@ -34,6 +34,11 @@ public interface AnswerDao {
      */
     void addLikesById(Integer answerId);
 
+
+
+
+    void addReadNum(Integer answerId);
+
     /**
      * 通过answerId取消给回答点赞
      * @param answerId
@@ -54,6 +59,9 @@ public interface AnswerDao {
      * @return
      */
     Integer getTotalAnswerNum(Integer questionId);
+
+
+    Answer getById(Integer id);
 
 
 

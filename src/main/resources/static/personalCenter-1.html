@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>personalCenter</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway+Dots">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Feedback-Form-row-custom.css">
+    <link rel="stylesheet" href="assets/css/Feedback-Form.css">
+    <link rel="stylesheet" href="assets/css/Ludens-Users---2-Register.css">
+    <link rel="stylesheet" href="assets/css/Ludens-Users---25-After-Register.css">
+    <link rel="stylesheet" href="assets/css/multi-step-form.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Brand-Dark-icons.css">
+    <link rel="stylesheet" href="assets/css/News-article-for-homepage-by-Ikbendiederiknl.css">
+    <link rel="stylesheet" href="assets/css/Newsletter.css">
+    <link rel="stylesheet" href="assets/css/Pretty-User-List-.css">
+    <link rel="stylesheet" href="assets/css/Register-form.css">
+    <link rel="stylesheet" href="assets/css/Responsive-UI-Card-02.css">
+    <link rel="stylesheet" href="assets/css/Search-Input-Responsive-with-Icon.css">
+    <link rel="stylesheet" href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
+    <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/assets/css/Mobile-Search-Bar.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="assets/css/Mobile-Search-Bar.css">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500"> -->
+    <!--    <link rel="stylesheet" href="/assets/css/PCCSS.css">-->
+    <style>
+        .UserCover {
+            /* background: #8d7878; */
+            height: 240px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .ProfileHeader-wrapper {
+            background-color: whitesmoke;
+            position: relative;
+            width: 100%;
+        }
+
+        .ProfileHeader-main {
+            margin: 0 20px 24px;
+            position: relative;
+            background-color: whitesmoke;
+        }
+
+        .ProfileHeader-avatar {
+            left: 0;
+            position: absolute;
+            top: -25px;
+            z-index: 1;
+        }
+
+        .UserAvatarEditor {
+            position: relative;
+        }
+
+        .ProfileHeader-content {
+            border-left: 164px solid transparent;
+            padding-left: 32px;
+            padding-top: 0px;
+        }
+
+        h1,
+        h3 {
+            font: inherit;
+            margin: 0;
+        }
+
+        h1 {
+            display: block;
+            font-size: 2em;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+
+        .ProfileHeader-name {
+            line-height: 30px;
+        }
+
+        .ProfileHeader-name {
+            font-size: 26px;
+            font-synthesis: style;
+            font-weight: 600;
+        }
+
+        element.style {
+            overflow: hidden;
+            transition: height 300ms ease-out 0s;
+            height: 25px;
+        }
+
+        /* .ProfileHeader-contentBody {
+            overflow: hidden;
+            position: relative;
+            width: 524px;
+        } */
+
+        /* .ProfileHeader-detailItem {
+            display: flex;
+            margin-bottom: 18px;
+        } */
+
+        /* .ProfileHeader-detailLabel {
+            font-synthesis: style;
+            font-weight: 600;
+            margin-right: 37px;
+            width: 60px;
+        } */
+
+        .ProfileHeader-contentFooter {
+            padding-top: 8px;
+            position: relative;
+                }
+        /* .ProfileButtonGroup {
+            display: flex;
+            float: left;
+        } */
+        .ProfileHeader-expandButton {
+            line-height: 1;
+        }
+
+        .Button--link,
+        .Button--plain {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            height: auto;
+            line-height: inherit;
+            padding: 0;
+        }
+
+        .Button,
+        html[data-theme=dark] .Button {
+            color: #8590a6;
+        }
+
+        .Button {
+            background: none;
+            border: 1px solid;
+            border-radius: 3px;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 32px;
+            padding: 0 16px;
+            text-align: center;
+        }
+
+        body,
+        button,
+        p,
+        pre {
+            margin: 0;
+        }
+
+        button {
+            display: inline-block;
+            text-align: center;
+            align-items: flex-start;
+            cursor: default;
+            box-sizing: border-box;
+            margin: 0em;
+            padding: 1px 6px;
+            border-width: 2px;
+            border-style: outset;
+            border-image: initial;
+        }
+
+        .ProfileHeader-buttons {
+            bottom: 0;
+            position: absolute;
+            right: 0;
+        }
+
+        #UploadPicture-input {
+            display: none;
+        }
+
+        .Profile-main {
+            width: 100%;
+            height: 500px;
+        }
+
+        .ProfileMain-left {
+            float: left;
+            width: 70%;
+            height: 500px;
+            line-height: 40px;
+        }
+
+        .ProfileMain-left ul {
+            display: flex;
+            height: 40px;
+            font-size: larger;
+            background-color: whitesmoke;
+        }
+
+        .ProfileMain-left ul li {
+            flex: 1;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        #ProfileMainLeft-box {
+            background-color: whitesmoke;
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .ProfileMainRight-box {
+            width: 28%;
+            float: right;
+            background-color: whitesmoke;
+        }
+
+        .user-name {
+            margin-left: 20px;
+        }
+
+        /* 轮播图 */
+        .swiper-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            background: #fff;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .swiper-container img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+
+<body>
+    <div class="page">
+        <!-- 导航栏 -->
+        <nav class="navbar navbar-dark navbar-expand-md bg-dark py-3">
+            <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span
+                        class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                            viewBox="0 0 16 16" class="bi bi-flower1 text-bg-dark"
+                            style="font-size: 68px;border-color: var(--bs-navbar-color);">
+                            <path
+                                d="M6.174 1.184a2 2 0 0 1 3.652 0A2 2 0 0 1 12.99 3.01a2 2 0 0 1 1.826 3.164 2 2 0 0 1 0 3.652 2 2 0 0 1-1.826 3.164 2 2 0 0 1-3.164 1.826 2 2 0 0 1-3.652 0A2 2 0 0 1 3.01 12.99a2 2 0 0 1-1.826-3.164 2 2 0 0 1 0-3.652A2 2 0 0 1 3.01 3.01a2 2 0 0 1 3.164-1.826zM8 1a1 1 0 0 0-.998 1.03l.01.091c.012.077.029.176.054.296.049.241.122.542.213.887.182.688.428 1.513.676 2.314L8 5.762l.045-.144c.248-.8.494-1.626.676-2.314.091-.345.164-.646.213-.887a4.997 4.997 0 0 0 .064-.386L9 2a1 1 0 0 0-1-1zM2 9l.03-.002.091-.01a4.99 4.99 0 0 0 .296-.054c.241-.049.542-.122.887-.213a60.59 60.59 0 0 0 2.314-.676L5.762 8l-.144-.045a60.59 60.59 0 0 0-2.314-.676 16.705 16.705 0 0 0-.887-.213 4.99 4.99 0 0 0-.386-.064L2 7a1 1 0 1 0 0 2zm7 5-.002-.03a5.005 5.005 0 0 0-.064-.386 16.398 16.398 0 0 0-.213-.888 60.582 60.582 0 0 0-.676-2.314L8 10.238l-.045.144c-.248.8-.494 1.626-.676 2.314-.091.345-.164.646-.213.887a4.996 4.996 0 0 0-.064.386L7 14a1 1 0 1 0 2 0zm-5.696-2.134.025-.017a5.001 5.001 0 0 0 .303-.248c.184-.164.408-.377.661-.629A60.614 60.614 0 0 0 5.96 9.23l.103-.111-.147.033a60.88 60.88 0 0 0-2.343.572c-.344.093-.64.18-.874.258a5.063 5.063 0 0 0-.367.138l-.027.014a1 1 0 1 0 1 1.732zM4.5 14.062a1 1 0 0 0 1.366-.366l.014-.027c.01-.02.021-.048.036-.084a5.09 5.09 0 0 0 .102-.283c.078-.233.165-.53.258-.874a60.6 60.6 0 0 0 .572-2.343l.033-.147-.11.102a60.848 60.848 0 0 0-1.743 1.667 17.07 17.07 0 0 0-.629.66 5.06 5.06 0 0 0-.248.304l-.017.025a1 1 0 0 0 .366 1.366zm9.196-8.196a1 1 0 0 0-1-1.732l-.025.017a4.951 4.951 0 0 0-.303.248 16.69 16.69 0 0 0-.661.629A60.72 60.72 0 0 0 10.04 6.77l-.102.111.147-.033a60.6 60.6 0 0 0 2.342-.572c.345-.093.642-.18.875-.258a4.993 4.993 0 0 0 .367-.138.53.53 0 0 0 .027-.014zM11.5 1.938a1 1 0 0 0-1.366.366l-.014.027c-.01.02-.021.048-.036.084a5.09 5.09 0 0 0-.102.283c-.078.233-.165.53-.258.875a60.62 60.62 0 0 0-.572 2.342l-.033.147.11-.102a60.848 60.848 0 0 0 1.743-1.667c.252-.253.465-.477.629-.66a5.001 5.001 0 0 0 .248-.304l.017-.025a1 1 0 0 0-.366-1.366zM14 9a1 1 0 0 0 0-2l-.03.002a4.996 4.996 0 0 0-.386.064c-.242.049-.543.122-.888.213-.688.182-1.513.428-2.314.676L10.238 8l.144.045c.8.248 1.626.494 2.314.676.345.091.646.164.887.213a4.996 4.996 0 0 0 .386.064L14 9zM1.938 4.5a1 1 0 0 0 .393 1.38l.084.035c.072.03.166.064.283.103.233.078.53.165.874.258a60.88 60.88 0 0 0 2.343.572l.147.033-.103-.111a60.584 60.584 0 0 0-1.666-1.742 16.705 16.705 0 0 0-.66-.629 4.996 4.996 0 0 0-.304-.248l-.025-.017a1 1 0 0 0-1.366.366zm2.196-1.196.017.025a4.996 4.996 0 0 0 .248.303c.164.184.377.408.629.661A60.597 60.597 0 0 0 6.77 5.96l.111.102-.033-.147a60.602 60.602 0 0 0-.572-2.342c-.093-.345-.18-.642-.258-.875a5.006 5.006 0 0 0-.138-.367l-.014-.027a1 1 0 1 0-1.732 1zm9.928 8.196a1 1 0 0 0-.366-1.366l-.027-.014a5 5 0 0 0-.367-.138c-.233-.078-.53-.165-.875-.258a60.619 60.619 0 0 0-2.342-.572l-.147-.033.102.111a60.73 60.73 0 0 0 1.667 1.742c.253.252.477.465.66.629a4.946 4.946 0 0 0 .304.248l.025.017a1 1 0 0 0 1.366-.366zm-3.928 2.196a1 1 0 0 0 1.732-1l-.017-.025a5.065 5.065 0 0 0-.248-.303 16.705 16.705 0 0 0-.629-.661A60.462 60.462 0 0 0 9.23 10.04l-.111-.102.033.147a60.6 60.6 0 0 0 .572 2.342c.093.345.18.642.258.875a4.985 4.985 0 0 0 .138.367.575.575 0 0 0 .014.027zM8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                            </path>
+                        </svg></span><span class="text-light">Wizard鬼才</span></a>
+                <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span
+                        class="visually-hidden">Toggle
+                        navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-5">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link active" href="index.html">首页</a></li>
+                        <li class="nav-item"><a class="nav-link" href="search.html">Bug星球</a></li>
+                        <li class="nav-item"><a class="nav-link" href="sendquestion.html">提问</a></li>
+                    </ul><a class="btn btn-primary ms-md-2" role="button" href="login.html">登录</a>
+                </div>
+            </div>
+        </nav>
+        <!-- 搜索框 -->
+        <div class="search-bar container bg-light border rounded border-0 border-light d-flex flex-column justify-content-between align-items-center flex-lg-row p-4 p-lg-5 pb-sm-0 mt-sm-0 mb-sm-0"
+            style="height: 30px;margin: 0px 0px;font-size: 10px;max-width: 1440PX;">
+            <div class="text-center text-lg-start py-3 py-lg-1 search-title">
+                <h2 class="fw-bold mb-2 search-title">Wizard搜索</h2>
+                <p class="mb-0"></p>
+            </div>
+            <form class="d-flex justify-content-center flex-wrap my-2 search-form" method="get" action="search.html">
+                <div class="my-2 search-inside-div"><input class="search-input form-control" type="text" name="key"
+                        placeholder="ArrayIndexOutOfBoundsException是怎么回事" style="width: 400px;"></div>
+                <div class="my-2 "><button class="search-btn btn btn-primary ms-sm-2" type="submit">搜索</button></div>
+            </form>
+        </div>
+        <!-- 头像和个人信息 -->
+        <!-- 轮播图 -->
+        <div class="UserCover">
+            <div class="swiper-container">
+                <img class="img-slide" src="./20201204084211917.jpg">
+                <img class="img-slide" src="./assets/img/图4.jpg">
+                <img class="img-slide" src="./assets/img/图2.jpg">
+                <img class="img-slide" src="./assets/img/assets/img/bg-masthead.jpg">
+                <img class="img-slide" src="./assets/img/图5.jpg">
+            </div>
+            <!-- <img src="v2-a9084de2356db5c3c7ff9f66e94ecc69_hd.jpg" alt=""style="width: 100%;"> -->
+        </div>
+        
+        <!-- 。。。 -->
+        <div class="ProfileHeader-wrapper">
+            <div class="ProfileHeader-main">
+                <div class="UserAvatarEditor ProfileHeader-avatar" style="top: -74px;">
+                    <!-- 头像 -->
+                    <span class="UserAvatar">
+                        <img id="userPhoto" width="160" height="160"
+                            src="https://pica.zhimg.com/v2-fa1741b3d33ba9e4957811c41938966f_xl.jpg?source=32738c0c"
+                            srcset="https://pica.zhimg.com/v2-fa1741b3d33ba9e4957811c41938966f_xll.jpg?source=32738c0c 2x"
+                            alt="">
+                    </span>
+                    <span class="user-name"></span><input placeholder="你的昵称" name="name" style="border: none;" />
+                    <p id="values"></p>
+                    </span>
+                    <label class="UploadPicture-wrapper" style="cursor: pointer;">
+                        <input type="file" accept="image/png,image/jpeg" id="UploadPicture-input">
+                        <div class="Mask UserAvatarEditor-mask Mask-hidden">
+                            <div class="Mask-mask Mask-mask--black UserAvatarEditor-maskInner"></div>
+                            <div class="Mask-content"><svg width="30" height="30" viewBox="0 0 24 24"
+                                    class="Zi Zi--Camera UserAvatarEditor-cameraIcon" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M7.394 4.814A2.41 2.41 0 0 1 9.65 3.25h4.7a2.41 2.41 0 0 1 2.256 1.564l.539 1.436h2.195a2.41 2.41 0 0 1 2.41 2.41v9.68a2.41 2.41 0 0 1-2.41 2.41H4.66a2.41 2.41 0 0 1-2.41-2.41V8.66a2.41 2.41 0 0 1 2.41-2.41h2.195l.539-1.436ZM13.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm1.5 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="UserAvatar-photo">修改我的头像</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <div class="ProfileHeader-content">
+                    <section>
+                        <label for="userPhone">联系电话：</label><input placeholder="××××××" type="text" id="userPhone"
+                            style="border: none;">
+                    </section>
+                    <br>
+                    <section>
+                        <label for="userjop">所在行业：</label><select type="text" id="jop">
+                            <option value="">学生</option>
+                            <option value="dog">老师</option>
+                            <option value="cat">白领</option>
+                            <option value="hamster">蓝领</option>
+                        </select>
+                    </section>
+                    <div class="ProfileHeader-contentFooter"> 
+                            <button type="button" class="Button Button--blue">
+                                <a href="#" style="text-decoration: none;">编辑个人资料</a>
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 评论 -->
+    <div class="Profile-main">
+        <div class="ProfileMain-left">
+            <section>
+                <ul>
+                    <li><a href="#ProfileMainLeft-box">回答</a></li>
+                    <li><a href="#ProfileMainLeft-box">提问</a></li>
+                    <li><a href="#ProfileMainLeft-box">收藏</a></li>
+                    <li><a href="#ProfileMainLeft-box">关注</a></li>
+                </ul>
+            </section>
+            <div id="ProfileMainLeft-box">
+                <iframe src="./answer.html" frameborder="0" scrolling="getFullYear" width="100%" height="100%">
+
+                </iframe>
+            </div>
+        </div>
+        <div calss="ProfileMain-right">
+            <div class="ProfileMainRight-box">
+                <br>
+                <section>
+                    <div style="display: flex; justify-content: center;">
+                        <h5>评论</h5>
+                    </div>
+                    <div>hhhh</div>
+                    <div>ddddddd</div>
+                    <div>ddddd</div>
+                    <div>ddddddd</div>
+                    <div>ddddddd</div>
+                    <div>@@@@@@@@</div>
+                    <div>#########</div>
+                    <div>$$$$$$$$</div>
+                    <div>%%%%%%%%%</div>
+                    <div>&&&&&&&&&</div>
+                </section>
+                <hr>
+                <section>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><span></span></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><span></span></li>
+                        <li><a href="#">Terms of &nbsp;Use</a></li>
+                        <li><span></span></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                    <p>© Wizard鬼才 2022. All Rights Reserved.</p>
+                </section>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <footer>
+
+    </footer>
+</body>
+<script>
+    // (function () {
+    //     var swiper = new Swiper(".swiper-container", {
+    //         slidesPerView: 3,
+    //         spaceBetween: 30,
+    //         pagination: {
+    //             el: ".swiper-pagination",
+    //             clickable: true,
+    //         },
+    //     });
+    // })();
+    var index=0;
+    function swiper() {
+        index++;
+        var a = document.getElementsByClassName("img-slide");
+        if(index >= a.length) index = 0;
+        for(var i = 0;i < a.length;i++){
+            a[i].style.display = 'none';
+        }
+        a[index].style.display = 'block';
+    }
+    setInterval(swiper,3000);
+
+</script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://geodata.solutions/includes/countrystate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./assets/js/axios-0.18.0.js"></script>
+<script>
+    var app = new Vue({
+        el: '#ps',
+        data: {
+            userInfo: null,
+        },
+        methods: {
+
+        },
+        created() {
+            // 从 localstorage 中获取存储的用户信息字符串
+            let userInfoString = localStorage.getItem('userInfo');
+
+            // 将字符串转换回 JavaScript 对象
+            this.userInfo = JSON.parse(userInfoString);
+
+
+        },
+    });
+</script>
+
+
+</html>

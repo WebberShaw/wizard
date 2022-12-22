@@ -43,6 +43,17 @@ public interface UserDao {
     @Select("select * from user where tel=#{tel}")
     User getUserByTel(User user);
 
+    User getUserById(Integer id);
+
+
+    void likeAnAnswer(Integer userId,Integer answerId);
+
+
+    Object getLikeStatus(Integer userId,Integer answerId);
+
+
+    void deleteLikes(Integer userId,Integer answerId);
+
 
 
 

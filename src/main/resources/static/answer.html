@@ -30,11 +30,198 @@
     <link rel="stylesheet" href="assets/css/Search-Input-Responsive-with-Icon.css">
     <link rel="stylesheet" href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
     <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">
+    <link href="https://unpkg.com/prismjs@latest/themes/prism.css" rel="stylesheet">
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="/assets/css/Mobile-Search-Bar.css">
     <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        #editor {
+            margin: auto;
+            width: 100%;
+            /* 设置边框、背景颜色、字体大小和颜色 */
+            border: 2px solid #6699cc;
+            background-color: #fff;
+            font-size: 14px;
+            color: #333;
+
+            margin-bottom: 10px;
+
+            /* 设置宽度和高度 */
+            /*width: 100%;*/
+            /*min-height: 300px;*/
+
+            /* 设置自动增长 */
+            overflow: auto;
+
+            /* 设置内边距 */
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 在移动端调整样式 */
+        @media screen and (max-width: 600px) {
+            #editor {
+
+                /* 调整宽度和高度 */
+                width: 100%;
+                /*min-height: 300px;*/
+
+                /* 设置自动增长 */
+                overflow: auto;
+
+                /* 调整内边距 */
+                padding: 5px;
+            }
+        }
+
+
+        #editor pre {
+            background-color: #f9f9f9;  /* 设置代码块的背景颜色为浅灰色 */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        #editor table {
+            /* 设置边框、边框线样式、边框颜色和边框宽度 */
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            border-color: #666;
+            border-width: 1px;
+
+            /* 设置表格宽度 */
+            width: 100%;
+        }
+
+        #editor td,
+        #editor th {
+            /* 设置边框、边框线样式、边框颜色和边框宽度 */
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            border-color: #666;
+            border-width: 1px;
+
+            /* 设置单元格内边距 */
+            padding: 10px;
+        }
+
+        #editor th {
+            /* 设置表头的背景颜色 */
+            background-color: #f5f5f5;
+
+            /* 设置表头的字体样式 */
+            font-weight: bold;
+        }
+        #editor p {
+            /* 设置字体大小、字体颜色和行高 */
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+        #editor h1 {
+            /* 设置字体大小、字体颜色和字体样式 */
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #editor h2 {
+            /* 设置字体大小、字体颜色和字体样式 */
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #editor h3 {
+            /* 设置字体大小、字体颜色和字体样式 */
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+        #editor a {
+            /* 设置字体颜色和字体样式 */
+            color: #00f;
+            font-weight: bold;
+
+            /* 设置链接的访问样式 */
+            text-decoration: none;
+        }
+
+        #editor a:hover {
+            /* 设置链接的 hover 样式 */
+            text-decoration: underline;
+        }
+
+        .user-card {
+            margin-bottom: 10px;
+            overflow: hidden;
+            /*margin-top: 100px;*/
+            border: 2px solid #6699cc;  /* 添加浅蓝色边框 */
+            border-radius: 10px;  /* 圆角边框 */
+            padding: 20px;  /* 内边距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 添加浅灰色阴影 */
+        }
+        .my-ans {
+            margin-bottom: 10px;
+            overflow: hidden;
+            width: 100%;
+            /*margin-top: 100px;*/
+            border: 2px solid #6699cc;  /* 添加浅蓝色边框 */
+            background-color: #6699cc;
+            color: white;
+            border-radius: 10px;  /* 圆角边框 */
+            padding: 20px;  /* 内边距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 添加浅灰色阴影 */
+        }
+        .my-like {
+            float: left;
+            margin-bottom: 10px;
+            overflow: hidden;
+            width: 48%;
+            /*margin-top: 100px;*/
+            border: 2px solid #f5c2c7;  /* 添加浅蓝色边框 */
+            background-color: #f5c2c7;
+            color: white;
+            border-radius: 10px;  /* 圆角边框 */
+            padding: 20px;  /* 内边距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 添加浅灰色阴影 */
+        }
+        .my-share {
+            float: right;
+            margin-bottom: 10px;
+            overflow: hidden;
+            width: 48%;
+            /*margin-top: 100px;*/
+            border: 2px solid #f0c78a;
+            background-color: #f0c78a;
+            color: white;
+            border-radius: 10px;  /* 圆角边框 */
+            padding: 20px;  /* 内边距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 添加浅灰色阴影 */
+        }
+        .comment-card {
+            margin-bottom: 3px;
+            overflow: hidden;
+            /*margin-top: 100px;*/
+            border: 2px solid #6699cc;  /* 添加浅蓝色边框 */
+            border-radius: 50px;  /* 圆角边框 */
+            padding: 20px;  /* 内边距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 添加浅灰色阴影 */
+        }
+        .comment-block {
+            margin-bottom: 3px;
+            width: 98%;
+            margin: auto;
+            /*margin-top: 100px;*/
+            border: 2px solid #6699cc;  /* 添加浅蓝色边框 */
+            border-radius: 10px;  /* 圆角边框 */
+            padding: 20px;  /* 内边距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 添加浅灰色阴影 */
+        }
+    </style>
 </head>
 
 <body>
@@ -76,40 +263,51 @@
             <div class="my-2 "><button class="search-btn btn btn-primary ms-sm-2" type="submit">搜索</button></div>
         </form>
     </div>
-    <div class="news-block">
-        <div class="container">
-            <div class="row">
+    <div class="news-block" style="margin: 0!important;" v-if="answer!=null">
+        <h1 class="newsblock-title">{{answer.question.title}}</h1>
+        <div class="container" style="margin-bottom: 0!important;max-width: 100%!important;">
+            <div class="row" style="width: 100%!important;margin: 0!important;">
                 <div class="col-md-3">
-                    <h1 class="newsblock-title">{user}</h1><p class="newsblock-link"><a href="about-us.html"><i class="la la-info-circle"></i> About us</a></p><p class="newsblock-link"><a href="schedule.html"><i class="la la-microphone"></i> Program / Schedule</a></p><p class="newsblock-link"><a href="contact.php"><i class="la la-envelope"></i> Contact us</a></p>
+<!--                    <h1 class="newsblock-title">{{answer.user.username}}</h1>-->
+                    <div class="user-card">
+                        <div style="text-align: center">
+                            <el-avatar size="large" style="text-align: center" :src="answer.user.avatarPath"></el-avatar>
+                        </div>
+                        <h4 style="text-align: center">{{answer.user.username}}</h4>
+                        <p class="newsblock-link"><i class="la la-clock-o"></i> {{answer.creatTime}}</p>
+                        <p class="newsblock-link" v-if="answer.user.identity==1"><i class="la la-chevron-circle-down"></i> {{answer.user.school}}</p>
+                        <p class="newsblock-link" v-if="answer.user.identity==2"><i class="la la-chevron-circle-down"></i> {{answer.user.company}}</p>
+                        <p class="newsblock-link"><i class="la la-thumbs-up"></i> {{answer.likes}}</p>
+                        <p class="newsblock-link"><i class="la la-eye"></i> {{answer.readNum}}</p>
+                    </div>
+                    <button class="my-ans" @click="jump"><i class="el-icon-s-opportunity">我来答</i></button>
+                    <button class="my-like" v-if="!isLiked" @click="addLikes"><i class="el-icon-star-off">{{answer.likes}}赞</i></button>
+                    <button class="my-like" v-if="isLiked" @click="cancelLikes"><i class="el-icon-star-on">{{answer.likes}}赞</i></button>
+                    <button class="my-share"  @click=""><i class="el-icon-share">分享</i></button>
+<!--                    <p class="newsblock-link"><a href="contact.php"><i class="la la"></i> Contact us</a></p>-->
                 </div>
                 <div class="col-md-9">
-                    <h1 class="newsblock-title">{question}</h1>
-                    <div class="row">
-                        <div class="col-9 col-xl-12 news-bg">
-                            <h1 class="newsblock-title-under">{Answer}</h1>
-                            <p>{content}</p>
-                        </div>
-                    </div>
+                    <div id="editor" v-html="answer.richtextContent"></div>
                 </div>
             </div>
         </div>
-        <ul class="list-group">
-            <li class="list-group-item">
+        <ul class="list-group comment-block">
+            <li class="comment-card">
                 <div class="d-flex media">
-                    <div><input type="checkbox"></div>
-                    <div class="media-body">
+
+                    <div class="media-body" style="width: 100%">
                         <div class="d-flex media" style="overflow:visible;">
                             <div><img class="me-3" style="width: 25px; height:25px;" src="assets/img/user-photo.jpg"></div>
-                            <div style="overflow:visible;" class="media-body">
+                            <div style="overflow:visible;width: 100%" class="media-body">
                                 <div class="row">
                                     <div class="col-10">
-                                        <h5><a href="#"><strong>Albert Anderson</strong></a></h5>
-                                        <p>Connect with Alex to discuss his recurring gift<br>
-                                            <small class="text-muted">08/03/16 at 9:00am </small></p>
+                                        <h5><a href="#"><strong>超级管理员</strong></a></h5>
+                                        <p>依照相关法律法规，评论功能正在测试、审核之中，很快将会与大家见面😙<br>
+                                            <small class="text-muted">2022-12-21 12:00 </small></p>
                                     </div>
                                     <div class="col-2">
                                         <div class="dropdown pull-right"><button class="btn btn-link dropdown-toggle d-block w-100" aria-expanded="false" data-bs-toggle="dropdown" type="button"> <i class="fa fa-chevron-down"></i></button>
-                                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#"><i class="fa fa-pencil fa-fw"></i>Edit</a><a class="dropdown-item" href="#"><i class="fa fa-trash-o fa-fw"></i>Delete </a></div>
+                                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#"><i class="fa fa-pencil fa-fw"></i>编辑</a><a class="dropdown-item" href="#"><i class="fa fa-trash-o fa-fw"></i>删除 </a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -118,17 +316,17 @@
                     </div>
                 </div>
             </li>
-            <li class="list-group-item">
+            <li class="comment-card">
                 <div class="d-flex media">
-                    <div><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-dollar fa-stack-1x fa-inverse"></i></span></div>
-                    <div class="media-body">
+                    <div class="media-body" style="width: 100%">
                         <div class="d-flex media" style="overflow:visible;">
                             <div><img class="me-3" style="width: 25px; height:25px;" src="assets/img/user-photo4.jpg"></div>
-                            <div style="overflow:visible;" class="media-body">
+                            <div style="overflow:visible;width: 100%" class="media-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p><a href="#">Sara Doe</a> donated $100 to <a href="#">Build a New Shelter Campaign </a> (added by <a href="#">John Stewart</a>)<br>
-                                            <small class="text-muted">August 6, 2016 @ 10:35am </small></p>
+                                        <h6>Wizard鬼才</h6>
+                                        <p>回复功能也将同时上线哟❤️<br>
+                                            <small class="text-muted">2022-12-21 12:01 </small></p>
                                     </div>
                                 </div>
                             </div>
@@ -138,31 +336,65 @@
             </li>
         </ul>
     </div>
+    <el-skeleton v-else :rows="15" style="background-color: white" animated />
     <div class="overlay" style="width: 1426px;margin-top: 10;"></div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://geodata.solutions/includes/countrystate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <script src="./assets/js/axios-0.18.0.js"></script>
+
 </div>
 </body>
 
 </html>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://geodata.solutions/includes/countrystate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/prism.js"></script>
+<script src="https://unpkg.com/prismjs@latest/prism.js"></script>
+<script src="https://unpkg.com/prismjs@latest/components/prism-core.js"></script>
+<script src="https://unpkg.com/prismjs@latest/plugins/autoloader/prism-autoloader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./assets/js/axios-0.18.0.js"></script>
 <script>
     var app = new Vue({
         el:"#answer",
+
         data:{
+            isLiked:false,
             userInfo: null,
-            answers:[],
-            questionId:'',
-            question:{},
-            user: {
-                username: '',
-                password: '',
-                tel: ''
-            },
+            answer:null,
+            answerId:'',
+            comments:[],
         },
         methods:{
+            addLikes(){
+                if(this.userInfo==null){
+                    this.$message.error("点赞是要先登录的哇！")
+                    return;
+                }
+                axios.post("/answers/likes/"+this.answer.id).then((res)=>{
+                    if(res.data.code==2001){
+                        this.$message.success("已点赞");
+                        this.answer.likes+=1;
+                        this.isLiked=true;
+                    }else{
+                        this.$message.error(res.data.msg);
+                    }
+                })
+            },
+            cancelLikes(){
+                if(this.userInfo==null){
+                    this.$message.error("您未登录")
+                    return;
+                }
+                axios.delete("/answers/likes/"+this.answer.id).then((res)=>{
+                    if(res.data.code==2001){
+                        this.$message("已取消点赞");
+                        this.answer.likes-=1;
+                        this.isLiked=false;
+                    }else{
+                        this.$message.error(res.data.msg);
+                    }
+                })
+            },
+
             getAllAnswer(id){
                 axios.get("/answers/"+id).then((res)=>{
                     if(res.data.code==2001){
@@ -171,23 +403,14 @@
                 });
             },
 
-            get(id){
-                axios.get("/answers/id"+id).then((res)=>{
-                    if(res.data.code==2001){
 
-                        this.question=res.data.data;
-                        console.log("-------------------------------");
-                        console.log(this.question);
-                        this.getAllAnswer(res.data.data.id);
-                    }else {
-                        this.$message.error("加载失败，请重试");
-                    }
-                });
-            },
             jump(){
-                window.location.href='/writeanswer.html?id='+this.question.id;
+                window.location.href='/writeanswer.html?id='+this.answer.question.id;
             },
 
+        },
+        updated() {
+            Prism.highlightAll();
         },
         created() {
             console.log("-------------")
@@ -196,11 +419,30 @@
             // 将字符串转换回 JavaScript 对象
             this.userInfo = JSON.parse(userInfoString);
             var arr = window.location.search.split('=');
-            this.get(window.decodeURIComponent(arr[1]));
-            console.log(this.questions);
 
+            axios.get("/answers/id/"+window.decodeURIComponent(arr[1])).then((res)=>{
+                if(res.data.code==2001){
+
+                    this.answer=res.data.data;
+                    console.log("-------------------------------");
+                    console.log(this.answer);
+                    axios.get("/answers/likes/"+res.data.data.id).then((res1)=>{
+                        if(res.data.code==2001){
+                            this.isLiked=res1.data.data;
+                        }else{
+                            console.log("未获取到是否点赞");
+                        }
+                    });
+                    // this.getAllAnswer(res.data.data.id);
+                }else {
+                    this.$message.error("加载失败，请重试");
+                }
+            });
 
         },
+        mounted() {
+
+        }
 
 
     })

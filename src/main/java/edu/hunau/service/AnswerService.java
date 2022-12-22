@@ -32,7 +32,7 @@ public interface AnswerService {
      * 通过answerId给回答点赞
      * @param answerId
      */
-    void addAnswerLike(Integer answerId);
+    void addAnswerLike(Integer answerId,Integer userId);
 
     /**
      * 通过answerId取消给回答点赞
@@ -54,6 +54,19 @@ public interface AnswerService {
      * @return
      */
     Integer getTotalAnswerNum(Integer questionId);
+
+
+    Answer getSingleAnswerById(Integer id);
+
+
+
+    void addAnswerReadNum(Integer id);
+
+
+    Boolean getLikeStatus(Integer userId,Integer answerId);
+
+
+    void cancelLike(Integer userId,Integer answerId);
 
 
 

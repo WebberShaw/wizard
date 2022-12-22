@@ -34,6 +34,7 @@ public interface UserService {
     int sendRegisterEmailCode(String to);
     int sendMessageCode(String to,int type);
 
+    User getById(Integer id);
 
 
 }

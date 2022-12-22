@@ -3,17 +3,17 @@
 }
 
 .news-block {
-  background-color: #;
-  padding: 70px 0px;
+  /*background-color: #;*/
+  padding: 0px 0px;
 }
 
 .newsblock-title {
   padding-bottom: 2px;
-  color: #ff534c;
+  color: #6699cc;
   font-family: 'Raleway Dots', cursive;
   font-size: 32px;
   font-weight: bold;
-  border-bottom: 1.25px dotted #ff534c;
+  border-bottom: 1.25px dotted #6699cc;
 }
 
 .newsblock-title-under {

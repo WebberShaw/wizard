@@ -24,6 +24,17 @@ public class Question {
     private  int readNum;
     private int answerNum;
 
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public int getId() {
         return id;
     }

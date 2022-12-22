@@ -14,6 +14,11 @@ public class QuestionServiceImpl implements QuestionService {
     QuestionDao questionDao;
 
     @Override
+    public String getQuestionNameById(Integer id) {
+        return questionDao.getQuestionNameById(id);
+    }
+
+    @Override
     public void addReadNum(Integer questionId) {
         questionDao.addReadNumById(questionId);
     }

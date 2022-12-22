@@ -6,10 +6,16 @@
 <insert id="addAnswer">
     insert into answer(content,richtext_content,user_id,question_id)values (#{content},#{richtextContent},#{userId},#{questionId});
 </insert>
-<select id="getAllAnswers" resultType="edu.hunau.model.Answer">
+    <update id="addReadNum">
+        UPDATE answer SET read_num = read_num+1 WHERE  id= #{id};
+    </update>
+    <select id="getAllAnswers" resultType="edu.hunau.model.Answer">
     SELECT content, answer.id as 'id',answer.creat_time as 'creat_time',user_id,username,likes FROM answer,user where answer.question_id=#{questionId} and answer.user_id = user.id ORDER BY likes desc;
 </select>
-<delete id="deleteById">
+    <select id="getById" resultType="edu.hunau.model.Answer">
+        select * from answer where id=#{answer};
+    </select>
+    <delete id="deleteById">
     DELETE FROM answer WHERE question_id = #{id};
 </delete>
  <update id="addLikesById">

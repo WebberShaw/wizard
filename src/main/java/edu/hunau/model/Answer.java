@@ -1,24 +1,11 @@
 package edu.hunau.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class Answer {
     private String richtextContent;
-
-    @Override
-    public String toString() {
-        return "Answer{" +
-                "richtextContent='" + richtextContent + '\'' +
-                ", id=" + id +
-                ", creatTime=" + creatTime +
-                ", content='" + content + '\'' +
-                ", userId=" + userId +
-                ", likes=" + likes +
-                ", updateTime=" + updateTime +
-                ", questionId=" + questionId +
-                ", username='" + username + '\'' +
-                '}';
-    }
 
     public String getRichtextContent() {
         return richtextContent;
@@ -29,14 +16,65 @@ public class Answer {
     }
 
     private int id;
-private LocalDateTime creatTime;
+
+    private int readNum;
+
+    public int getReadNum() {
+        return readNum;
+    }
+
+    public void setReadNum(int readNum) {
+        this.readNum = readNum;
+    }
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime creatTime;
 private String content;
 private int userId;
 private int likes;
 private LocalDateTime updateTime;
 private int questionId;
 
-private String username;
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "richtextContent='" + richtextContent + '\'' +
+                ", id=" + id +
+                ", readNum=" + readNum +
+                ", creatTime=" + creatTime +
+                ", content='" + content + '\'' +
+                ", userId=" + userId +
+                ", likes=" + likes +
+                ", updateTime=" + updateTime +
+                ", questionId=" + questionId +
+                ", username='" + username + '\'' +
+                ", user=" + user +
+                ", question=" + question +
+                '}';
+    }
+
+    private String username;
+
+private User user;
+
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    private Question question;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getUsername() {
         return username;

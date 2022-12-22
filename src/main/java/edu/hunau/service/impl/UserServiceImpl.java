@@ -72,5 +72,10 @@ public class UserServiceImpl implements UserService {
         return code;
     }
 
+    @Override
+    public User getById(Integer id) {
+        return userDao.getUserById(id);
+    }
+
 
 }
