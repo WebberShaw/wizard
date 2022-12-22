@@ -239,4 +239,39 @@ public class UserController {
 
         return new Result(Code.OK,user,"保存成功，欢迎开启您的Wizard之旅");
     }
+    @DeleteMapping("/logout")
+    public Result logout(HttpServletRequest request){
+        request.getSession().removeAttribute("user");
+        return new Result(Code.OK,null);
+    }
+
+
+    @GetMapping("/myQuestions")
+    private Result getMyQuestions(HttpServletRequest request){
+        Object user1 = request.getSession().getAttribute("user");
+        if(user1==null){
+            return new Result(Code.ERR,null,"您的登录已过期，请重新登录");
+        }
+        User user=(User) user1;
+        return new Result(Code.OK,userService.getMyQuestions(user.getId()));
+    }
+
+    @GetMapping("/myAnswers")
+    private Result getMyAnswers(HttpServletRequest request){
+        Object user1 = request.getSession().getAttribute("user");
+        if(user1==null){
+            return new Result(Code.ERR,null,"您的登录已过期，请重新登录");
+        }
+        User user=(User) user1;
+        return new Result(Code.OK,userService.getMyAnswers(user.getId()));
+    }
+    @GetMapping("/myLikedAnswers")
+    private Result getMyLikedAnswers(HttpServletRequest request){
+        Object user1 = request.getSession().getAttribute("user");
+        if(user1==null){
+            return new Result(Code.ERR,null,"您的登录已过期，请重新登录");
+        }
+        User user=(User) user1;
+        return new Result(Code.OK,userService.getMyLikedAnswers(user.getId()));
+    }
 }

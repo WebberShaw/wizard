@@ -1,6 +1,10 @@
 package edu.hunau.service;
 
+import edu.hunau.model.Answer;
+import edu.hunau.model.Question;
 import edu.hunau.model.User;
+
+import java.util.List;
 
 public interface UserService {
     /**
@@ -35,6 +39,13 @@ public interface UserService {
     int sendMessageCode(String to,int type);
 
     User getById(Integer id);
+
+    List<Answer> getMyAnswers(Integer userId);
+    List<Answer> getMyLikedAnswers(Integer userId);
+
+    List<Question> getMyQuestions(Integer userId);
+
+
 
 
 }

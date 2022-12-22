@@ -57,6 +57,15 @@
     <select id="getLikeStatus" resultType="java.lang.Object">
         select * from user_answer_like where user_id=#{userId} and answer_id =#{answerId}
     </select>
+    <select id="getMyQuestions" resultType="edu.hunau.model.Question">
+        select id,creat_time,content,title,read_num  from question where user_id=#{userId}
+    </select>
+    <select id="getMyLikedAnswers" resultType="edu.hunau.model.Answer">
+        select answer.id, answer.creat_time, answer.content,answer.likes, answer.update_time, answer.question_id,answer.read_num ,question.title as 'question_name'from user_answer_like,answer,question where user_answer_like.user_id=#{userId} and user_answer_like.answer_id= answer.id and answer.question_id = question.id
+    </select>
+    <select id="getMyAnswers" resultType="edu.hunau.model.Answer">
+        select answer.id, answer.creat_time, answer.content,answer.likes, answer.update_time, answer.question_id,answer.read_num,question.title as 'question_name' from answer,question where answer.user_id=#{userId} and answer.question_id = question.id
+    </select>
 
 
 </mapper>

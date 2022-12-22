@@ -55,7 +55,17 @@ private int questionId;
 
     private String username;
 
-private User user;
+    private String questionName;
+
+    public String getQuestionName() {
+        return questionName;
+    }
+
+    public void setQuestionName(String questionName) {
+        this.questionName = questionName;
+    }
+
+    private User user;
 
 
     public Question getQuestion() {

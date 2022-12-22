@@ -1,6 +1,8 @@
 package edu.hunau.service.impl;
 
 import edu.hunau.dao.UserDao;
+import edu.hunau.model.Answer;
+import edu.hunau.model.Question;
 import edu.hunau.model.User;
 import edu.hunau.service.UserService;
 import edu.hunau.utils.SenderUtil;
@@ -10,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -75,6 +78,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Integer id) {
         return userDao.getUserById(id);
+    }
+
+    @Override
+    public List<Answer> getMyAnswers(Integer userId) {
+        return userDao.getMyAnswers(userId);
+    }
+
+    @Override
+    public List<Answer> getMyLikedAnswers(Integer userId) {
+        return userDao.getMyLikedAnswers(userId);
+    }
+
+    @Override
+    public List<Question> getMyQuestions(Integer userId) {
+        return userDao.getMyQuestions(userId);
     }
 
 

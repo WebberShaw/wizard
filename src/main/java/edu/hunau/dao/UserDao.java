@@ -1,9 +1,13 @@
 package edu.hunau.dao;
 
+import edu.hunau.model.Answer;
+import edu.hunau.model.Question;
 import edu.hunau.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface UserDao {
@@ -53,6 +57,15 @@ public interface UserDao {
 
 
     void deleteLikes(Integer userId,Integer answerId);
+
+    List<Question> getMyQuestions(Integer userId);
+
+    List<Answer> getMyLikedAnswers(Integer userId);
+
+
+    List<Answer> getMyAnswers(Integer userId);
+
+
 
 
 

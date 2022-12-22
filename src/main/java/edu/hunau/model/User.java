@@ -1,5 +1,6 @@
 package edu.hunau.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Email;
@@ -73,7 +74,9 @@ public class User {
         this.company = company;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime creatTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime updateTime;
 
     public int getId() {

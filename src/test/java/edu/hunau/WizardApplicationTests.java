@@ -118,4 +118,9 @@ class WizardApplicationTests {
     public void addLikes(){
         System.out.println(answerService.getLikeStatus(13, 27));
     }
+    @Test
+    public void  getMyquestion(){
+        List<Answer> myLikedAnswers = userDao.getMyAnswers(2);
+        System.out.println(myLikedAnswers);
+    }
 }

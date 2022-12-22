@@ -31,12 +31,37 @@
     <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!--    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+    <link rel="stylesheet" href="/assets/css/Mobile-Search-Bar.css">
     <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        .my-action {
+            width: 97%;
+            overflow: hidden;
+            margin: auto;
+
+            /*margin-top: 100px;*/
+            border: 2px solid #6699cc;  /* 添加浅蓝色边框 */
+            border-radius: 10px;  /* 圆角边框 */
+            padding: 20px;  /* 内边距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 添加浅灰色阴影 */
+        }
+        .my-item {
+            width: 100%;
+            overflow: hidden;
+            margin: auto;
+
+            /*margin-top: 100px;*/
+            border: 2px solid #6699cc;  /* 添加浅蓝色边框 */
+            border-radius: 10px;  /* 圆角边框 */
+            padding: 20px;  /* 内边距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 添加浅灰色阴影 */
+        }
+    </style>
 </head>
 
 <body background="v2-a9084de2356db5c3c7ff9f66e94ecc69_hd.jpg">
-<div id="app100">
+<div id="user">
     <nav class="navbar navbar-dark navbar-expand-md bg-dark py-3">
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-flower1 text-bg-dark" style="font-size: 68px;border-color: var(--bs-navbar-color);">
                         <path d="M6.174 1.184a2 2 0 0 1 3.652 0A2 2 0 0 1 12.99 3.01a2 2 0 0 1 1.826 3.164 2 2 0 0 1 0 3.652 2 2 0 0 1-1.826 3.164 2 2 0 0 1-3.164 1.826 2 2 0 0 1-3.652 0A2 2 0 0 1 3.01 12.99a2 2 0 0 1-1.826-3.164 2 2 0 0 1 0-3.652A2 2 0 0 1 3.01 3.01a2 2 0 0 1 3.164-1.826zM8 1a1 1 0 0 0-.998 1.03l.01.091c.012.077.029.176.054.296.049.241.122.542.213.887.182.688.428 1.513.676 2.314L8 5.762l.045-.144c.248-.8.494-1.626.676-2.314.091-.345.164-.646.213-.887a4.997 4.997 0 0 0 .064-.386L9 2a1 1 0 0 0-1-1zM2 9l.03-.002.091-.01a4.99 4.99 0 0 0 .296-.054c.241-.049.542-.122.887-.213a60.59 60.59 0 0 0 2.314-.676L5.762 8l-.144-.045a60.59 60.59 0 0 0-2.314-.676 16.705 16.705 0 0 0-.887-.213 4.99 4.99 0 0 0-.386-.064L2 7a1 1 0 1 0 0 2zm7 5-.002-.03a5.005 5.005 0 0 0-.064-.386 16.398 16.398 0 0 0-.213-.888 60.582 60.582 0 0 0-.676-2.314L8 10.238l-.045.144c-.248.8-.494 1.626-.676 2.314-.091.345-.164.646-.213.887a4.996 4.996 0 0 0-.064.386L7 14a1 1 0 1 0 2 0zm-5.696-2.134.025-.017a5.001 5.001 0 0 0 .303-.248c.184-.164.408-.377.661-.629A60.614 60.614 0 0 0 5.96 9.23l.103-.111-.147.033a60.88 60.88 0 0 0-2.343.572c-.344.093-.64.18-.874.258a5.063 5.063 0 0 0-.367.138l-.027.014a1 1 0 1 0 1 1.732zM4.5 14.062a1 1 0 0 0 1.366-.366l.014-.027c.01-.02.021-.048.036-.084a5.09 5.09 0 0 0 .102-.283c.078-.233.165-.53.258-.874a60.6 60.6 0 0 0 .572-2.343l.033-.147-.11.102a60.848 60.848 0 0 0-1.743 1.667 17.07 17.07 0 0 0-.629.66 5.06 5.06 0 0 0-.248.304l-.017.025a1 1 0 0 0 .366 1.366zm9.196-8.196a1 1 0 0 0-1-1.732l-.025.017a4.951 4.951 0 0 0-.303.248 16.69 16.69 0 0 0-.661.629A60.72 60.72 0 0 0 10.04 6.77l-.102.111.147-.033a60.6 60.6 0 0 0 2.342-.572c.345-.093.642-.18.875-.258a4.993 4.993 0 0 0 .367-.138.53.53 0 0 0 .027-.014zM11.5 1.938a1 1 0 0 0-1.366.366l-.014.027c-.01.02-.021.048-.036.084a5.09 5.09 0 0 0-.102.283c-.078.233-.165.53-.258.875a60.62 60.62 0 0 0-.572 2.342l-.033.147.11-.102a60.848 60.848 0 0 0 1.743-1.667c.252-.253.465-.477.629-.66a5.001 5.001 0 0 0 .248-.304l.017-.025a1 1 0 0 0-.366-1.366zM14 9a1 1 0 0 0 0-2l-.03.002a4.996 4.996 0 0 0-.386.064c-.242.049-.543.122-.888.213-.688.182-1.513.428-2.314.676L10.238 8l.144.045c.8.248 1.626.494 2.314.676.345.091.646.164.887.213a4.996 4.996 0 0 0 .386.064L14 9zM1.938 4.5a1 1 0 0 0 .393 1.38l.084.035c.072.03.166.064.283.103.233.078.53.165.874.258a60.88 60.88 0 0 0 2.343.572l.147.033-.103-.111a60.584 60.584 0 0 0-1.666-1.742 16.705 16.705 0 0 0-.66-.629 4.996 4.996 0 0 0-.304-.248l-.025-.017a1 1 0 0 0-1.366.366zm2.196-1.196.017.025a4.996 4.996 0 0 0 .248.303c.164.184.377.408.629.661A60.597 60.597 0 0 0 6.77 5.96l.111.102-.033-.147a60.602 60.602 0 0 0-.572-2.342c-.093-.345-.18-.642-.258-.875a5.006 5.006 0 0 0-.138-.367l-.014-.027a1 1 0 1 0-1.732 1zm9.928 8.196a1 1 0 0 0-.366-1.366l-.027-.014a5 5 0 0 0-.367-.138c-.233-.078-.53-.165-.875-.258a60.619 60.619 0 0 0-2.342-.572l-.147-.033.102.111a60.73 60.73 0 0 0 1.667 1.742c.253.252.477.465.66.629a4.946 4.946 0 0 0 .304.248l.025.017a1 1 0 0 0 1.366-.366zm-3.928 2.196a1 1 0 0 0 1.732-1l-.017-.025a5.065 5.065 0 0 0-.248-.303 16.705 16.705 0 0 0-.629-.661A60.462 60.462 0 0 0 9.23 10.04l-.111-.102.033.147a60.6 60.6 0 0 0 .572 2.342c.093.345.18.642.258.875a4.985 4.985 0 0 0 .138.367.575.575 0 0 0 .014.027zM8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
@@ -76,14 +101,25 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <div class="d-flex media">
-                <div><img class="rounded-circle me-3" style="height: 50px; width: 50px;" src="assets/img/user-photo2.jpg"></div>
+            <div class="d-flex media" style="width: 100%!important;">
+                <div><img class="rounded-circle me-3" style="height: 50px; width: 50px;" :src="userInfo.avatarPath"></div>
                 <div class="media-body">
                     <ul class="list-unstyled fa-ul">
-                        <li><i class="fa fa-user fa-li"></i><a href="#">James Doe</a></li>
-                        <li><i class="fa fa-envelope fa-li"></i><a href="#">james.doe@gmail.com </a></li>
-                        <li><i class="fa fa-phone fa-li"></i>(555) 555-5555</li>
-                        <li><i class="fa fa-chevron-down fa-li"></i></li>
+                        <li><i class="fa fa-user fa-li"></i><a href="#">{{userInfo.username}}</a></li>
+                        <li v-if="userInfo.email!=null"><i class="fa fa-envelope fa-li"></i><a href="#">{{userInfo.email}} </a></li>
+                        <li><i class="fa fa-phone fa-li"></i>{{userInfo.tel}}</li>
+                        <li v-if="userInfo.identity==1"><i class="fa fa-chevron-down fa-li"></i>{{userInfo.school}}</li>
+                        <li v-if="userInfo.identity==2"><i class="fa fa-chevron-down fa-li"></i>{{userInfo.company}}</li>
+                        <li ><i class="fa fa-clock fa-li"></i>注册时间{{userInfo.creatTime}}</li>
+                        <li ><i class="fa fa-clock fa-li"></i>最近修改{{userInfo.updateTime}}</li>
+                    </ul>
+                    <ul style="float: left">
+                        <el-button round>修改</el-button>
+<!--                        <el-button type="danger" round>登出</el-button>-->
+                    </ul>
+                    <ul style="float: right;">
+<!--                        <el-button round>修改</el-button>-->
+                        <el-button type="danger" @click="logout" round>登出</el-button>
                     </ul>
                 </div>
             </div>
@@ -92,25 +128,137 @@
 <!--                    <div class="progress-bar bg-danger" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"><span class="visually-hidden">90%</span></div>-->
 <!--                </div>-->
 <!--            </div>-->
-            <hr>
-            <p><i class="fa fa-ticket fa-fw"></i> 1 General Admission Tickets: $25<br>
-<span class="text-muted"><i class="fa fa-calendar fa-fw"></i> May 12, 2016</span></p>
         </div>
     </div>
+    <div class="my-action">
+        <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+            <el-tab-pane label="我的提问" name="first">
+<!--                <p v-if="myQuestions==null">暂无提问</p>-->
+                <div v-if="myQuestions=='null'">
+                    <el-skeleton style="text-align: center; margin: 20px" :rows="4"  animated/>
+                </div>
+                <div v-else-if="myQuestions==null">
+                    <p >暂无提问</p>
+                </div>
+                <div v-else class="my-item" v-for="question in myQuestions">
+                    <a :href="'/question.html?id='+question.id">
+                        <h5>{{question.title}}</h5>
+                        <p class="mb-1" style="min-height: 0em;max-height: 4.5em;line-height: 1.5em;overflow: hidden;text-overflow: ellipsis">{{question.content}}</p>
+                        <small>{{question.creatTime}}</small>
+                        <small class="text-muted" style="float: right"><i class="la la-eye"></i>{{question.readNum}}</small>
+                    </a>
+                </div>
+            </el-tab-pane>
+            <el-tab-pane label="我的回答" name="second">
+
+                <div v-if="myAnswers=='null'">
+                    <el-skeleton style="text-align: center; margin: 20px" :rows="4"  animated/>
+                </div>
+                <div v-else-if="myAnswers==null">
+                    <p >暂无回答</p>
+                </div>
+                <div v-else class="my-item" v-for="answer in myAnswers">
+                    <a :href="'/answer.html?id='+answer.id">
+                        <h5>{{answer.questionName}}</h5>
+                        <p class="mb-1" style="min-height: 0em;max-height: 4.5em;line-height: 1.5em;overflow: hidden;text-overflow: ellipsis">{{answer.content}}</p>
+                        <small>{{answer.creatTime}}</small>
+                        <small class="text-muted" style="float: right"><i class="la la-eye"></i>{{answer.readNum}}</small>
+                        <small class="text-muted" style="float: right"><i class="la la-thumbs-up"></i>{{answer.likes}}</small>
+                    </a>
+                </div>
+            </el-tab-pane>
+            <el-tab-pane label="我的点赞" name="third">
+                <div v-if="myLikedAnswers=='null'">
+                    <el-skeleton style="text-align: center; margin: 20px" :rows="4"  animated/>
+                </div>
+                <div v-else-if="myAnswers==null">
+                    <p >暂无点赞</p>
+                </div>
+                <div v-else class="my-item" v-for="answer in myLikedAnswers">
+                    <a :href="'/answer.html?id='+answer.id">
+                        <h5>{{answer.questionName}}</h5>
+                        <p class="mb-1" style="min-height: 0em;max-height: 4.5em;line-height: 1.5em;overflow: hidden;text-overflow: ellipsis">{{answer.content}}</p>
+                        <small>{{answer.creatTime}}</small>
+                        <small class="text-muted" style="float: right"><i class="la la-eye"></i>{{answer.readNum}}</small>
+                        <small class="text-muted" style="float: right"><i class="la la-thumbs-up"></i>{{answer.likes}}</small>
+                    </a>
+                </div>
+            </el-tab-pane>
+            <el-tab-pane label="我的评论" name="fourth">该功能正在加急上线中</el-tab-pane>
+        </el-tabs>
+    </div>
+
 
     <div class="overlay" style="width: 1426px;margin-top:10 ;"></div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://geodata.solutions/includes/countrystate.js"></script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 </div>
 </body>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://geodata.solutions/includes/countrystate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="./plugins/elementui/index.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./assets/js/axios-0.18.0.js"></script>
 <script>
     var app =new Vue({
-        el: '#app',
+        el: '#user',
         data:{
             userInfo:null,
+            activeName: 'first',
+            myAnswers:"null",
+            myLikedAnswers:"null",
+            myQuestions:"null",
         },
         methods:{
+            logout(){
+                axios.delete("/users/logout").then((res)=>{
+                    if(res.data.code=2001){
+                        this.$message.success("登出成功,即将跳转");
+                    }else {
+                        console.log("在登出时遇见了异常错误")
+                    }
+                })
+                localStorage.removeItem("userInfo");
+                // this.userInfo=null;
+                // this.$message.success("登出成功,即将跳转");
+                setTimeout(function jumpToLogin() {
+                        this.userInfo=null;
+                        window.location.href='/login.html';
+
+                    }
+                    ,3000);
+            },
+            handleClick(tab, event) {
+                console.log(tab, event);
+                if(tab.index=="1"&&this.myAnswers=="null"){
+                    axios.get("users/myAnswers").then((res)=>{
+                        if(res.data.code==2001){
+                            this.myAnswers=res.data.data;
+
+                        }else{
+                            this.$message.error("获取我的回答失败")
+                        }
+                    })
+                }else if(tab.index=="2"&&this.myLikedAnswers=="null"){
+                    axios.get("users/myLikedAnswers").then((res)=>{
+                        if(res.data.code==2001){
+                            this.myLikedAnswers=res.data.data;
+
+                        }else{
+                            this.$message.error("获取我的点赞失败")
+                        }
+                    })
+                }else if(tab.index=="0"&&this.myQuestions=="null"){
+                    axios.get("users/myQuestions").then((res)=>{
+                        if(res.data.code==2001){
+                            this.myQuestions=res.data.data;
+
+                        }else{
+                            this.$message.error("获取我的提问失败")
+                        }
+                    })
+                }
+            },
 
         },
         created() {
@@ -122,6 +270,14 @@
                     }
                     ,3000);
             }
+            axios.get("users/myQuestions").then((res)=>{
+                if(res.data.code==2001){
+                    this.myQuestions=res.data.data;
+
+                }else{
+                    this.$message.error("获取我的提问失败")
+                }
+            })
 
 
             // 将字符串转换回 JavaScript 对象
@@ -131,7 +287,7 @@
         mounted() {
             axios.get("/users/get").then((res)=>{
                 if(res.data.code==2001){
-
+                    this.userInfo=res.data.data;
 
                 }else {
                     localStorage.removeItem("userInfo");
