@@ -264,7 +264,7 @@
         </form>
     </div>
     <div class="news-block" style="margin: 0!important;" v-if="answer!=null">
-        <h1 class="newsblock-title">{{answer.question.title}}</h1>
+        <h1 class="newsblock-title"  ><a :href="'/question.html?id='+answer.question.id">{{answer.question.title}}</a></h1>
         <div class="container" style="margin-bottom: 0!important;max-width: 100%!important;">
             <div class="row" style="width: 100%!important;margin: 0!important;">
                 <div class="col-md-3">

@@ -1,8 +1,9 @@
 
 spring:
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://ddns.webbershaw.fun:3306/wizard
+    url: jdbc:mysql://localhost:3306/wizard
     username: root
     password: Yy336699
     type: com.alibaba.druid.pool.DruidDataSource
@@ -14,7 +15,7 @@ spring:
       # 是否启用分段上传支持
       enabled: true
       # 最大请求大小
-      max-request-size: 50MB
+      max-request-size: 60MB
       # 最大文件的大小
       max-file-size: 50MB
       #上传文件的中间位置
@@ -34,12 +35,19 @@ mybatis:
     map-underscore-to-camel-case: true
 
 server:
-  port: 8080
+  port: 443
+
+
+
 
 
 
 
   # yml 配置如下
+  ssl:
+    key-store: classpath:www.webbershaw.fun.jks
+    key-store-password: f6wg4y97b27
+    key-store-type: JKS
 azureblob:
   defaultEndpointsProtocol: https
   blobEndpoint: https://q7fefidjmr6e6vpnsa.blob.core.windows.net/

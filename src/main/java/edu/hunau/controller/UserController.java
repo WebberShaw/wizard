@@ -105,10 +105,12 @@ public class UserController {
         }catch (Exception e){
             return new Result(Code.ERR,false,"注册失败，请联系管理员");
         }
+        User login = userService.login(user);
         user.setPassword(null);
-        user.setAvatarPath("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png");
+        user.setId(login.getId());
+
         session.setAttribute("user",user);
-        return new Result(Code.OK,user,"注册成功，3秒后跳转至资料完善页面");
+        return new Result(Code.OK,login,"注册成功，3秒后跳转至资料完善页面");
 
 
 
@@ -233,11 +235,12 @@ public class UserController {
             }
         }
         userService.updateUser(user);
-        user.setPassword(null);
-        session.setAttribute("user",user);
+        User login = userService.getById(user.getId());
+        login.setPassword(null);
+        session.setAttribute("user",login);
 
 
-        return new Result(Code.OK,user,"保存成功，欢迎开启您的Wizard之旅");
+        return new Result(Code.OK,login,"保存成功，欢迎开启您的Wizard之旅");
     }
     @DeleteMapping("/logout")
     public Result logout(HttpServletRequest request){

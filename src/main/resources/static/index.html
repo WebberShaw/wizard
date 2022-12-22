@@ -34,6 +34,19 @@
     <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">
     <link rel="stylesheet" href="/assets/css/Mobile-Search-Bar.css">
     <style>
+        .user-card {
+            margin: auto;
+            text-align: center;
+            width: 80%;
+            /*height: 40px;*/
+            display: flex;  /* 将卡片设置为flex布局 */
+            align-items: center;  /* 将内容居中显示 */
+
+            border: 2px solid #6699cc;  /* 添加浅蓝色边框 */
+            border-radius: 30px;  /* 圆角边框 */
+            padding: 20px;  /* 内边距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 添加浅灰色阴影 */
+        }
         @media only screen and (max-width: 480px) {
             .overlay{
                 width: auto !important;
@@ -78,7 +91,7 @@
                     <h2 class="fw-bold mb-2 search-title">Wizard搜索</h2>
                     <p class="mb-0"></p>
                 </div>
-                <form class="d-flex justify-content-center flex-wrap my-2 search-form" method="post" action="search.html">
+                <form class="d-flex justify-content-center flex-wrap my-2 search-form" method="get" action="search.html">
                     <div class="my-2 search-inside-div"><input v-model="key" class="search-input form-control" type="text" name="key" placeholder="ArrayIndexOutOfBoundsException是怎么回事" style="width: 400px;"></div>
                     <div class="my-2 "><button class="search-btn btn btn-primary ms-sm-2" type="submit">搜索</button></div>
                 </form>
@@ -109,7 +122,7 @@
   <div class="container" >
     <div class="row">
       <!-- column  -->
-      <div class="col-lg-5">
+      <div v-if="userInfo==null" class="col-lg-5">
         <h6 class="text-themecolor font-weight-normal text-uppercase">立即登录，加入Bug星球</h6>
         <h4 class="my-3">登录</h4>
         <h6 class="subtitle mt-3 font-weight-normal">遇到Bug，立即登录发布提问，编程难题快速解决</h6>
@@ -133,6 +146,14 @@
         </div>
           <button class="btn btn-danger-gradiant btn-block btn-md text-uppercase text-white border-0" @click="login()">登录 </button>
       </div>
+        <div v-else>
+            <div class="user-card">
+                <div style="float: left;text-align: center">
+                    <el-avatar :src="userInfo.avatarPath" size="large" style="text-align: center"></el-avatar>
+                </div>
+                <h4 style="text-align: center;float: right"> {{userInfo.username}}，欢迎回来！</h4>
+            </div>
+        </div>
       <!-- column  -->
       <div class="col-lg-6 ml-auto">
         <div class="d-block d-md-flex border-bottom pb-3 text-uppercase">
@@ -144,8 +165,8 @@
             <a href="#"><img src="https://img1.baidu.com/it/u=1989959759,3741225722&fm=253&fmt=auto&app=138&f=PNG?w=534&h=500" alt="wrapkit" class="img-fluid" /></a>
           </div>
           <div class="col-md-8">
-            <h5><a href="#" class="text-decoration-none">c语言下标-1为什么有值</a></h5>
-            <p>by <a href="#" class="text-decoration-none">By WenboXiao</a> /2022-10-30</p>
+            <h5><a href="/question.html?id=4" class="text-decoration-none">c语言下标-1为什么有值</a></h5>
+            <p>by <a href="#" class="text-decoration-none">WenboXiao</a> /2022-10-30</p>
           </div>
         </div>
         <div class="row blog-row my-3">
@@ -153,7 +174,7 @@
             <a href="#"><img src="https://img2.baidu.com/it/u=4044307889,3583288738&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=280" alt="wrapkit" class="img-fluid" /></a>
           </div>
           <div class="col-md-8">
-            <h5><a href="#" class="text-decoration-none">mybatis如何模糊查询</a></h5>
+            <h5><a href="/question.html?id=27" class="text-decoration-none">mybatis如何模糊查询</a></h5>
             <p>by <a href="#" class="text-decoration-none">李凯贤</a> / 2022-10-30</p>
           </div>
         </div>
@@ -185,6 +206,7 @@
                         <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
                     </ul>
                     <p class="text-muted small mb-4 mb-lg-0">© Wizard鬼才 2022. All Rights Reserved.</p>
+                    <p class="text-muted small mb-4 mb-lg-0">湘ICP备2022007405号-1</p>
                 </div>
                 <div class="col-lg-6 text-center text-lg-end my-auto h-100">
                     <ul class="list-inline mb-0">

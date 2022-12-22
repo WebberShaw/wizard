@@ -35,6 +35,34 @@
     <link rel="stylesheet" href="/assets/css/Mobile-Search-Bar.css">
     <!-- 引入组件库 -->
     <style>
+        @media only screen and (max-width: 992px){
+            .mob-sty{
+                width: 95%!important;
+            }
+        }
+        .avatar-uploader .el-upload {
+            border: 1px dashed #d9d9d9;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .avatar-uploader .el-upload:hover {
+            border-color: #409EFF;
+        }
+        .avatar-uploader-icon {
+            font-size: 28px;
+            color: #8c939d;
+            width: 178px;
+            height: 178px;
+            line-height: 178px;
+            text-align: center;
+        }
+        .avatar {
+            width: 178px;
+            height: 178px;
+            display: block;
+        }
         .my-action {
             width: 97%;
             overflow: hidden;
@@ -114,7 +142,7 @@
                         <li ><i class="fa fa-clock fa-li"></i>最近修改{{userInfo.updateTime}}</li>
                     </ul>
                     <ul style="float: left">
-                        <el-button round>修改</el-button>
+                        <el-button round @click="dialogFormVisible = true">修改</el-button>
 <!--                        <el-button type="danger" round>登出</el-button>-->
                     </ul>
                     <ul style="float: right;">
@@ -187,6 +215,69 @@
             <el-tab-pane label="我的评论" name="fourth">该功能正在加急上线中</el-tab-pane>
         </el-tabs>
     </div>
+    <el-dialog class="mob-sty" title="编辑信息" :visible.sync="dialogFormVisible" width="90%">
+        <el-form :model="form">
+            <div class="form-group mb-3">
+                <label class="form-label">用户名</label>
+                <input v-model="userInfo.username" class="form-control" type="text" name="username" required="">
+            </div>
+            <div class="form-group mb-3"><label class="form-label">上传头像</label>
+                <el-upload
+                        class="avatar-uploader"
+                        action="/files/uploadAvatar"
+                        :show-file-list="false"
+                        :on-success="handleAvatarSuccess"
+                        :before-upload="beforeAvatarUpload">
+                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+            </div>
+            <div class="form-group mb-3"><label class="form-label">您的身份</label>
+                <br>
+                <el-radio v-model="userInfo.identity" label="1" border>在校学生</el-radio>
+                <el-radio v-model="userInfo.identity" label="2" border>职场程序员</el-radio>
+            </div>
+            <div class="form-group mb-3" v-if="userInfo.identity==1">
+                <label class="form-label">就读学校</label>
+                <input v-model="userInfo.school" class="form-control" type="text" placeholder="湖南农业大学" name="school" required="">
+            </div>
+            <div class="form-group mb-3" v-else-if="userInfo.identity==2"><label class="form-label">所在公司</label><input v-model="userInfo.company" class="form-control"
+                                                                                                                           type="text" autocomplete="off" required="" placeholder="腾讯科技有限公司" name="company"
+                                                                                                                           title="输入您的公司"></div>
+            <span>
+                <div class="form-group mb-3"><label class="form-label">邮箱</label>
+                <br>
+                    <div style="text-align: center;display: flex; justify-content: space-between;">
+  <input v-model="userInfo.email" class="form-control" type="email" autocomplete="off" required="" placeholder="xxx@stu.hunau.edu.cn" name="email" title="输入您的邮箱" style="display: inline-block;width: 75%; float: left;">
+  <button class="btn btn-primary" type="button" style="display: inline-block;float: right;margin-top: -20px; background-color: white; color:#adb5bd;" type="button" @click="sendEmail">发送验证码</button>
+</div>
+
+                    <!--                <input class="form-control"-->
+                    <!--                    type="email" autocomplete="off" required="" placeholder="xxx@stu.hunau.edu.cn" name="email"-->
+                    <!--                          title="输入您的邮箱"  style="width: 75%; float: left;">-->
+                    <!--                    <button  class="btn btn-primary" style="float: right;margin-top: -20px; background-color: white; color:#adb5bd;" type="button">发送验证码</button>-->
+                </div>
+
+
+            </span>
+            <br>
+            <div class="form-group mb-3">
+                <label class="form-label">邮箱验证码</label>
+                <input class="form-control" type="text" placeholder="" name="verifyCode" required="" v-model="userInfo.verifyCode">
+            </div>
+            <!-- <span><input type="number" name="" id=""></span> -->
+            <br>
+            <hr style="margin-top: 30px;margin-bottom: 10px;">
+            <div class="form-group mb-3" >
+<!--                <button class="btn btn-primary d-block w-100" type="button"  @click="submit">-->
+<!--                    <i class="fas fa-save"></i>&nbsp;完成</button></div>-->
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="submit">确 定</el-button>
+        </div>
+    </el-dialog>
+
 
 
     <div class="overlay" style="width: 1426px;margin-top:10 ;"></div>
@@ -203,6 +294,7 @@
     var app =new Vue({
         el: '#user',
         data:{
+            dialogFormVisible:false,
             userInfo:null,
             activeName: 'first',
             myAnswers:"null",
@@ -210,6 +302,69 @@
             myQuestions:"null",
         },
         methods:{
+            submit(){
+                if(this.userInfo.email!=""&&this.userInfo.verifyCode==""){
+                    this.$message.error("请输入验证码");
+                }else {
+                    axios.put("/users",this.userInfo).then((res)=>{
+                        if(res.data.code==2001){
+                            this.$message.success("修改成功");
+                            this.dialogFormVisible=false;
+                            let userInfoString = JSON.stringify(res.data.data);
+                            // 将字符串存入 localstorage
+                            localStorage.setItem('userInfo', userInfoString);
+                            // setTimeout(function jumpToLogin() {
+                            //         window.location.href='/index.html';
+                            //     }
+                            //     ,3000);
+                        }else{
+                            this.$message.error(res.data.msg);
+                        }
+                    })
+                }
+            },
+            handleAvatarSuccess(res, file) {
+                if(res.code==2001) {
+                    this.$message.success(res.msg);
+                    this.imageUrl = URL.createObjectURL(file.raw);
+                    this.userInfo.avatarPath=res.data;
+                    let userInfoString = JSON.stringify(this.userInfo);
+                    // 将字符串存入 localstorage
+                    localStorage.setItem('userInfo', userInfoString);
+
+                }else {
+                    this.$message.error(res.msg);
+                }
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg'||file.type === 'image/png'||file.type === 'image/jpg';
+                const isLt2M = file.size / 1024 / 1024 < 10;
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG JPEG 或 PNG 格式!');
+
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 10MB!');
+                }
+                return isJPG && isLt2M;
+            },
+
+            sendEmail(){
+                if(this.userInfo.email==""){
+                    this.$message.error('请输入邮箱');
+                    return;
+                }
+                axios.get("/users/sendEmail/"+this.userInfo.email).then((resp)=> {
+                    // _this.reg_msg = resp.data;
+                    if(resp.data.code==2000){
+                        this.$message.error(resp.data.msg);
+                    }else if(resp.data.code==2001){
+                        this.$message.success(resp.data.msg);
+                    }
+
+                })
+            },
             logout(){
                 axios.delete("/users/logout").then((res)=>{
                     if(res.data.code=2001){
