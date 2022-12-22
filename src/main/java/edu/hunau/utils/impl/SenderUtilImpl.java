@@ -40,7 +40,7 @@ public class SenderUtilImpl implements SenderUtil {
     public boolean sendTextMessage(String to, int code,int type) {
 
                 try{
-                    Credential cred = new Credential("AKIDkGXXGjuoRouiFWWFhtoSpuoRmqeBRQ7X", "B4g15rMaXDcja9RSCfrmRpxnMfiUzECu");
+                    Credential cred = new Credential("","");
                     // 实例化一个http选项，可选的，没有特殊需求可以跳过
                     HttpProfile httpProfile = new HttpProfile();
                     httpProfile.setEndpoint("sms.tencentcloudapi.com");
@@ -54,15 +54,15 @@ public class SenderUtilImpl implements SenderUtil {
                     String[] phoneNumberSet1 = {to};
                     req.setPhoneNumberSet(phoneNumberSet1);
 
-                    req.setSmsSdkAppId("1400773584");
-                    req.setSignName("灵犀小程序个人网");
+                    req.setSmsSdkAppId("");
+                    req.setSignName(");
                     String[] templateParamSet1 = null;
                     if(type==1) {
-                        req.setTemplateId("1624753");
+                        req.setTemplateId("");
 
                         templateParamSet1 = new String[]{Integer.toString(code), "3"};
                     }else if(type==0){
-                        req.setTemplateId("1626874");
+                        req.setTemplateId("");
 
                         templateParamSet1 = new String[]{Integer.toString(code)};
                     }
